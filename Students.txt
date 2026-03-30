@@ -1,7 +1,7 @@
 0 Ernesto Cuadros-Vargas <ecuadros@spc.org.pe>,
 1 Alvarez Cadillo, Michell Adrian
 2 Bernaola Gayoso César Raúl
-3 Castro Chaupis, Armando Cristhian
+3 Castro Chaupis, Armando Cristhian <armandocristhiancastrochaupis@gmail.com>,
 4 Castro Galindo Carlo André
 5 Diaz Tapia Adderly Orlando
 6 DÍAZ VEGA OLENKA HELENE
