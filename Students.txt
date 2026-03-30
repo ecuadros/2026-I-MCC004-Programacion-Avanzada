@@ -6,7 +6,7 @@
 5 Diaz Tapia Adderly Orlando
 6 DÍAZ VEGA OLENKA HELENE
 7 Lopez Flores Royer Amed
-8 Miranda Zarate Jorge Luis
+8 Miranda Zarate Jorge Luis <mirandazaratejorge@gmail.com>,
 9 Oscar Toledo Guereero
 10 Quispe Calloapaza, David Saul
 11 Suarez Maciel Susana Isabel
