@@ -1,19 +1,27 @@
 #include <cmath>
 #include <iostream>
 #include "util.h"
-
-
+#include "types.h" 
 // 0. Ernesto Cuadros <ecuadros@spc.org.pe>
 T1 suma(T1 x, T1 y) {
     return x + y;
 }
 
 // 1 Alvarez Cadillo, Michell Adrian <<michell.aac.1106@gmail.com>,
+int resta(int x, int y) {
+    return x - y;
+}
 
 // 2 Bernaola Gayoso César Raúl <bernaolacesar@gmail.com>,
+int multiplicacion(int x, int y) {
+    return x * y;
+}
 
 // 3 Castro Chaupis, Armando Cristhian <armandocristhiancastrochaupis@gmail.com>,
-
+float dividir(int x,int y)
+{
+    return (float)x/(float)y;
+}
 // 4 Castro Galindo Carlo André <carlocastrogalindo@gmail.com>,
 int potencia(int base, int exponente) {
     int resultado = 1;
@@ -34,6 +42,15 @@ double raizCuadrada(double x) {
 // 6 Díaz Vega Greta Solange <gretadiaz01@gmail.com>
 
 // 7 DÍAZ VEGA OLENKA HELENE <olenka.diaz.v@uni.pe>
+int exponencial(int x, int y) {
+    int resultado = 1;
+
+    for (int i = 0; i < y; i++) {
+        resultado *= x;
+    }
+
+    return resultado;
+}
 
 // 8 Gallo Lugo Carlos enrique <cgallolugo@gmail.com>
 
@@ -54,7 +71,7 @@ U1 factorial(U1 number){
 // 11 Oscar Toledo Guerrero <tgoscar@gmail.com>
 
 // 12 Quispe Calloapaza, David Saul <quispedavid987@gmail.com>
-double Promedio(double x0, double y0) {
+T12 Promedio(T12 x0, T12 y0) {
     return (x0 + y0) / 2.;
 }
 
