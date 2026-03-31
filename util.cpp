@@ -38,7 +38,16 @@ int exponencial(int x, int y) {
 }
 
 // 8 Gallo Lugo Carlos enrique <cgallolugo@gmail.com>
-
+int fibo(int n) {
+    if (n==1) return 1;
+    int a=0, b=1,c;
+    for (int i=2; i<=n;i++){
+        c = a+b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
 // 9 Lopez Flores Royer Amed <roamlofl9@gmail.com>
 
 // 10 Miranda Zarate Jorge Luis <mirandazaratejorge@gmail.com>,

@@ -41,6 +41,9 @@ int main() {
     // 7 DÍAZ VEGA OLENKA HELENE <olenka.diaz.v@uni.pe>
 
     // 8 Gallo Lugo Carlos enrique <cgallolugo@gmail.com>
+    int n = 7;
+    int n0 = fibo(n);
+    cout << "Carlos Enrique Gallo Lugo: fibonacci(" << n << ") = " << n0 << endl;
 
     // 9 Lopez Flores Royer Amed <roamlofl9@gmail.com>
 
@@ -61,7 +64,8 @@ int main() {
     // 20 Segura Nuñez Alex Ernesto <alex.segura.nunez@gmail.com>
 
     // 21 Selis Vasquez Luis Antonio <luisanonioselisvasquez@gmail.com>
-    int a1 = 5, b1 = 6; 
+    a1 = 5;
+    int b1 = 6; 
     int r0 = (a1*a1 + b1*b1)/(a1 + b1); 
     cout << r0 << endl;
     
