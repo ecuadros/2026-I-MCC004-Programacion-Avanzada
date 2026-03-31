@@ -14,6 +14,13 @@ int suma(int x, int y) {
 // 3 Castro Chaupis, Armando Cristhian <armandocristhiancastrochaupis@gmail.com>,
 
 // 4 Castro Galindo Carlo André <carlocastrogalindo@gmail.com>,
+int potencia(int base, int exponente) {
+    int resultado = 1;
+    for (int i = 0; i < exponente; i++) {
+        resultado *= base;
+    }
+    return resultado;
+}
 
 // 5 Diaz Tapia Adderly Orlando <adderly.diaz.tapia@gmail.com>
 double raizCuadrada(double x) {
