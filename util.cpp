@@ -1,9 +1,9 @@
-#include "util.h"
 #include <cmath>
 #include <iostream>
-
+#include "util.h"
+#include "types.h" 
 // 0. Ernesto Cuadros <ecuadros@spc.org.pe>
-int suma(int x, int y) {
+T1 suma(T1 x, T1 y) {
     return x + y;
 }
 
@@ -16,6 +16,11 @@ int resta(int x, int y) {
     return x - y;
 }
 
+
+
+T1 resta(T1 x, T1 y) {
+    return x - y;
+}
 // 2 Bernaola Gayoso César Raúl <bernaolacesar@gmail.com>,
 int multiplicacion(int x, int y) {
     return x * y;
@@ -36,7 +41,7 @@ int potencia(int base, int exponente) {
 }
 
 // 5 Diaz Tapia Adderly Orlando <adderly.diaz.tapia@gmail.com>
-double raizCuadrada(double x) {
+T5 raizCuadrada(T5 x) {
     if (x < 0) {
      std::cout << "Error: No se puede calcular la raíz cuadrada de un número negativo." << std::endl;
      return -1; 
@@ -46,17 +51,26 @@ double raizCuadrada(double x) {
 // 6 Díaz Vega Greta Solange <gretadiaz01@gmail.com>
 
 // 7 DÍAZ VEGA OLENKA HELENE <olenka.diaz.v@uni.pe>
+int exponencial(int x, int y) {
+    int resultado = 1;
+
+    for (int i = 0; i < y; i++) {
+        resultado *= x;
+    }
+
+    return resultado;
+}
 
 // 8 Gallo Lugo Carlos enrique <cgallolugo@gmail.com>
 
 // 9 Lopez Flores Royer Amed <roamlofl9@gmail.com>
 // abs
-double valor_absoluto(double x) {
+T_ABS valor_absoluto(T_ABS x) {
     return (x < 0) ? -x : x; 
 }
 // 10 Miranda Zarate Jorge Luis <mirandazaratejorge@gmail.com>,
-unsigned int factorial(unsigned int number){
-    unsigned int result = 1;
+U1 factorial(U1 number){
+    U1 result = 1;
     for(int i=number; i > 0; i--){
         result *= i;
     }
@@ -70,7 +84,7 @@ int resta(int z, int w) {
 }
 
 // 12 Quispe Calloapaza, David Saul <quispedavid987@gmail.com>
-double Promedio(double x0, double y0) {
+T12 Promedio(T12 x0, T12 y0) {
     return (x0 + y0) / 2.;
 }
 
@@ -80,8 +94,8 @@ double Promedio(double x0, double y0) {
     }
 
 // 14 Tellez Heredia Jhon <phyjhon@gmail.com>,
-float porcentaje(int a14, int b14) {
-    return ((a14 + b14)/b14)*100;
+F14 porcentaje(T14 a14, T14 b14) {
+    return ((a14 - b14)/b14)*100;
 }
 // 15 Vilca Aguilar Luis Angel <luisangelvilca2@gmail.com>,
 int fact(int n) {
@@ -93,7 +107,7 @@ int fact(int n) {
 }
 
 // 16 Vinatea Chávez Camilo Jorge <camo2391@gmail.com>
-float mult(float x, float y) {
+T16 mult(T16 x, T16 y) {
     return x*y;
 }
 
