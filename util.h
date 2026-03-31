@@ -32,6 +32,7 @@ int suma(int x, int y);
 // 14 Tellez Heredia Jhon <phyjhon@gmail.com>,
 
 // 15 Vilca Aguilar Luis Angel <luisangelvilca2@gmail.com>,
+int fact(int n);
 
 // 16 Vinatea Chávez Camilo Jorge <camo2391@gmail.com>
 
