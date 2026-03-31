@@ -43,6 +43,9 @@ int main() {
     cout << "Diaz Tapia Adderly Orlando: " << a5 << endl;
     // 6 Díaz Vega Greta Solange <gretadiaz01@gmail.com>
     // Modulo
+    int x6 = 10, y6 = 3;
+    int a6 = modulo(x6, y6);
+   cout << "Greta Diaz Vega: " << a6 << endl;
 
     // 7 DÍAZ VEGA OLENKA HELENE <olenka.diaz.v@uni.pe>
     
