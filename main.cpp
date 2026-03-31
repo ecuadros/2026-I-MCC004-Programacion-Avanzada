@@ -66,9 +66,9 @@ int main() {
     cout << "Demo Miranda Zarate Jorge: " << u0 << "! = " << factorial(u0) << endl;
 
     // 11 Oscar Toledo Guerrero <tgoscar@gmail.com>
-    int x5 = 4, y5 = 4;
-    int o = resta(x5, y5);
-    cout << "Oscar Toledo Guerrero: " << o << endl;
+    T1 x5 = 4, T1 y5 = 4;
+    T1 o = resta(x5, y5);
+    cout << o << endl;
     
     // 12 Quispe Calloapaza, David Saul <quispedavid987@gmail.com>
     double a1 = 5., b1 = 6.;
