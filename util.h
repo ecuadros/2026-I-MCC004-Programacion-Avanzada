@@ -24,7 +24,7 @@ int suma(int x, int y);
 // 10 Miranda Zarate Jorge Luis <mirandazaratejorge@gmail.com>,
 
 // 11 Oscar Toledo Guerrero <tgoscar@gmail.com>
-int resta(int x, int y);
+int resta(int z, int w);
 
 // 12 Quispe Calloapaza, David Saul <quispedavid987@gmail.com>
 
