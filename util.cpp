@@ -38,7 +38,7 @@ int potencia(int base, int exponente) {
 }
 
 // 5 Diaz Tapia Adderly Orlando <adderly.diaz.tapia@gmail.com>
-double raizCuadrada(double x) {
+T5 raizCuadrada(T5 x) {
     if (x < 0) {
      std::cout << "Error: No se puede calcular la raíz cuadrada de un número negativo." << std::endl;
      return -1; 

@@ -19,7 +19,7 @@ float dividir(int x,int y);
 int potencia(int base, int exponente);
 
 // 5 Diaz Tapia Adderly Orlando <adderly.diaz.tapia@gmail.com>
-double raizCuadrada(double x);
+T5 raizCuadrada(T5 x);
 // 6 Díaz Vega Greta Solange <gretadiaz01@gmail.com>
 
 // 7 DÍAZ VEGA OLENKA HELENE <olenka.diaz.v@uni.pe>
