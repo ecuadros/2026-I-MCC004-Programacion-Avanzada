@@ -10,7 +10,7 @@ int resta(int x, int y);
 int multiplicacion(int x, int y);
 
 // 3 Castro Chaupis, Armando Cristhian <armandocristhiancastrochaupis@gmail.com>,
-
+float dividir(int x,int y);
 // 4 Castro Galindo Carlo André <carlocastrogalindo@gmail.com>,
 
 // 5 Diaz Tapia Adderly Orlando <adderly.diaz.tapia@gmail.com>
