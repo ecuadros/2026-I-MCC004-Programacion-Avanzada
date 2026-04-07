@@ -22,5 +22,8 @@ using F14 = double;
 using RealType = double;
 using ImagType = double;
 
+using Distance = double;
+using Area     = double;
+
 #endif // __TYPES_H__
 

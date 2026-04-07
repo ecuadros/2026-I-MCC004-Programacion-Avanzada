@@ -4,7 +4,12 @@ LDFLAGS = -pthread # Añadido -pthread
 
 TARGET = main
 SRCS = main.cpp util.cpp \
-       complex.cpp
+       complex.cpp \
+       shape.cpp \
+       rectangle.cpp \
+       circle.cpp \
+       triangle.cpp \
+       polimorfismo.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -3,6 +3,7 @@
 #include "complex.h"
 #include "functions.h"
 #include "util.h"
+#include "polimorfismo.h"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ using namespace std;
 // g++ -std=c++2b main.cpp util.cpp -o main
 int main() {
     // DemoFunctions();
-    DemoComplex();
+    // DemoComplex();
+    DemoPolimorfismo();
     return 0;
 }
