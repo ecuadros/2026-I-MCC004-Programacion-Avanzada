@@ -115,6 +115,8 @@ T16 mult(T16 x, T16 y) {
 
 // 21 Selis Vasquez Luis Antonio <luisanonioselisvasquez@gmail.com>
 
+void FError(){}
+
 void DemoFunctions(){
     // 0. Ernesto Cuadros <ecuadros@spc.org.pe>
     T1 x0 = 1, y0 = 2;
@@ -201,4 +203,6 @@ void DemoFunctions(){
     T1 a21 = 5, b21 = 6; 
     T1 r21 = (a21*a21 + b21*b21)/(a21 + b21); 
     cout << "Selis Vasquez Luis Antonio: " << r21 << endl;
+
+    FError();
 }

@@ -19,5 +19,8 @@ using T12 = double;
 using T14 = double;
 using F14 = double;
 
+using RealType = double;
+using ImagType = double;
+
 #endif // __TYPES_H__
 

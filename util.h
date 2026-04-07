@@ -51,7 +51,7 @@ T16 mult(T16 x, T16 y);
 // 20 Segura Nuñez Alex Ernesto <alex.segura.nunez@gmail.com>
 
 // 21 Selis Vasquez Luis Antonio <luisanonioselisvasquez@gmail.com>
-
+void FError();
 void DemoFunctions();
 
 #endif // __UTIL_H__
