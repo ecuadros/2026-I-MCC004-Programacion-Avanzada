@@ -69,8 +69,8 @@ int main() {
     cout << "David Quispe: " << p0 << endl;
 
     // 13 Suarez Maciel Susana Isabel <susana.suarez.maciel@gmail.com>
-    int x13 = 8;
-    int result = cuadrado(x13);
+    T1 x13 = 8;
+    T1 result = cuadrado(x13);
     cout << "Suarez Maciel Susana Isabel: El cuadrado de: " << x13 << " es " << result << endl;
     
     // 14 Tellez Heredia Jhon <phyjhon@gmail.com>,
