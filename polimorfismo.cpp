@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <fstream>     // ofstream
 #include "shapes/all-shapes.h"
 
 using namespace std;
@@ -9,7 +10,8 @@ const int nObjs = 4;
 
 void DemoPolimorfismo() {
 
-    ostream &os = cout;
+    ofstream ofs("shapes.txt");
+    ostream &os = ofs;
     // Crear 3 objetos bajo punteros de tipo Shape
     Shape *sv[nObjs] = {new Rectangle("RectX", os, 4.0, 5.0), 
                         new Circle   ("CírcX", os, 3.0),
@@ -24,7 +26,9 @@ void DemoPolimorfismo() {
     for(int i = 0; i < nObjs; i++)
         delete sv[i];
 
-    cout << "=== Demostración de polimorfismo ===" << endl;
+    ofs << ">>>>>>>>>>>>>> Ahora viene la segunda parte" << endl;
+
+    cout << "============== Demostración de polimorfismo ==============" << endl;
     // Crear un vector de punteros a Shape
     vector< unique_ptr<Shape> > formas;
 
@@ -41,4 +45,15 @@ void DemoPolimorfismo() {
         cout << forma->GetName() << " -> área: " << forma->GetArea() << endl;
     }
 
+    int a, b;
+    float c;
+    string s;
+    ifstream ifs("entradas.txt");
+    ifs >> a >> b >> c >> s;
+    cout << "a: " << a << " b: " << b 
+         << " c: " << c << " s: " << s << endl;
+    // cin >> a;
+    // ostream (cout)
+    // ofstream      : archivos
+    // ostringstream : strings
 }

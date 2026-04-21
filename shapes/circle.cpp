@@ -1,7 +1,7 @@
 #include <cmath>
 #include "circle.h"
 
-Circle::Circle(string name,ostream &os, Distance radius)
+Circle::Circle(string name, ostream &os, Distance radius)
     : Shape(name, os), m_radius(radius) {
         m_os << "Construyendo Circle: " << GetName() << endl;
     }
