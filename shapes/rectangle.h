@@ -5,10 +5,11 @@
 
 class Rectangle : public Shape {
 private:
-    Distance width;
-    Distance height;
+    Distance m_width;
+    Distance m_height;
 public:
-    Rectangle(string name, Distance width, Distance height);
+    Rectangle(string name, ostream &os, Distance width, Distance height);
+    virtual ~Rectangle();
     Area GetArea() const override;
 };
 

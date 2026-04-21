@@ -5,10 +5,11 @@
 
 class Triangle : public Shape {
 private:
-    Distance base;
-    Distance height;
+    Distance m_base;
+    Distance m_height;
 public:
-    Triangle(string name, Distance base, Distance height);
+    Triangle(string name, ostream &os, Distance base, Distance height);
+    virtual ~Triangle();
     Area GetArea() const override;
 };
 

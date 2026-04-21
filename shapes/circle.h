@@ -5,9 +5,10 @@
 
 class Circle : public Shape {
 private:
-    Distance radius;
+    Distance m_radius;
 public:
-    Circle(string name, Distance radius);
+    Circle(string name, ostream &os, Distance radius);
+    virtual ~Circle();
     Area GetArea() const override;
 };
 
