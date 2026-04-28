@@ -25,5 +25,7 @@ using ImagType = double;
 using Distance = double;
 using Area     = double;
 
+using TI = int;
+
 #endif // __TYPES_H__
 

@@ -3,6 +3,7 @@
 #include "complex.h"
 #include "functions.h"
 #include "util.h"
+#include "BitSigno.h"
 #include "polimorfismo.h"
 #include "Pointers.h"
 #include "BitSigno.h"
