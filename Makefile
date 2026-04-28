@@ -10,7 +10,9 @@ SRCS = main.cpp util.cpp \
        shapes/circle.cpp \
        shapes/triangle.cpp \
        shapes/square.cpp \
-       polimorfismo.cpp
+       polimorfismo.cpp \
+       BitSigno.cpp \
+       Pointers.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
