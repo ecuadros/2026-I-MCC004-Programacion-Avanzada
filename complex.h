@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <utility> // exchange
 #include "types.h"
 
 using namespace std;
@@ -27,6 +28,12 @@ public:
     Complex(Complex &other){
         m_real = other.GetReal();
         m_imag = other.GetImag();
+    }
+
+    // Move constructor
+    Complex(Complex &&other){
+        m_real = exchange(other.m_real, 0);
+        m_imag = exchange(other.m_imag, 0);
     }
     // Destructor
     // 1. Se llama igual que la clase pero con el simbolo ~
