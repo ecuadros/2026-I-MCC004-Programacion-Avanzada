@@ -26,6 +26,7 @@ using Distance = double;
 using Area     = double;
 
 using TI = int;
+using TP = int;
 
 #endif // __TYPES_H__
 

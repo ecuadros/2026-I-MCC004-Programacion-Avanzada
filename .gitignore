@@ -41,4 +41,4 @@
 *.dwo
 
 main
-Test.txt
+*.txt

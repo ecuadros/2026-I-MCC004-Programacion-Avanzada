@@ -2,5 +2,10 @@
 #define __POINTERS_H__
 
 void DemoPointers1();
+void DemoPointersVector1();
+void DemoPointersVector2();
+void DemoPointersVector3();
+void DemoPointersVector4();
+void DemoPointersVector5();
 
 #endif // __POINTERS_H__
