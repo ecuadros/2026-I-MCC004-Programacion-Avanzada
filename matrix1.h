@@ -42,6 +42,10 @@ void Matrix1<T>::Destroy(){
             m_pMat[i] = nullptr;
         }
     }
+    if(m_pMat != nullptr){
+        delete[] m_pMat;
+        m_pMat = nullptr;
+    }
 }
 
 template <typename T>
