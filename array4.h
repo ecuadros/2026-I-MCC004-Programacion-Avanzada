@@ -1,6 +1,6 @@
 #ifndef __ARRAY4_H__
 #define __ARRAY4_H__
-#include <__nullptr>
+// #include <__nullptr>
 #include <functional>
 #include <iostream>
 
@@ -40,7 +40,7 @@ template <typename Func, typename... Args>
 void Array4<T>::ApplyFunctionToAll(Func func, Args&& ...args) {
     for (size_t i = 0; i < m_size; ++i)
         // func(m_pArray[i], args...);
-        func(m_pArray[i], forward<Args>(args)...);
+        func(m_pArray[i], std::forward<Args>(args)...);
 }
 
 template <typename T>

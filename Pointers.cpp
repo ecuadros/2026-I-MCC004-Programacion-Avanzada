@@ -1,11 +1,13 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
+#include <sstream>  // istringstream
 #include "Pointers.h"
 #include "util.h"
 #include "array1.h"
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -17,6 +19,9 @@ void Print2(T &n) { cout << "valor: " << n << endl; }
 
 template <typename T>
 void AddX(T &n, T val1, T val2) { n += val1 + val2; }
+
+template <typename T>
+void AddOne(T &n) { ++n; }
 
 template <typename T>
 void Square(T &n) { n *= n; }
@@ -227,4 +232,26 @@ void DemoPointersVector5(){
 }
 
 void DemoPointersMatrix1(){
+    DemoPointersMatrix4();
+}
+
+void DemoPointersMatrix4(){
+    cout << "Nivel #4 (cachimbo respetable) con matriz\n";
+    cout << "- Matriz implementada con doble puntero -\n";
+
+    Matrix1<TI> matrix4;
+    istringstream iss("2 3 1 2 3 4 5 6");
+    matrix4.Read(iss);
+
+    cout << "Matriz original:\n";
+
+    matrix4.Print(cout);
+    cout << "Sumar 1\n";
+    matrix4.ApplyFunctionToAll(AddOne<TI>);
+
+    cout << "Nueva Matriz:\n";
+    matrix4.Print(cout);
+
+    // cout << "Operador <<\n";
+    // cout << matrix4;
 }
