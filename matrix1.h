@@ -71,4 +71,25 @@ ostream &Matrix1<T>::Print(ostream &os){
     return os;
 }
 
+template <typename T>
+template <typename Func, typename... Args>
+void Matrix1<T>::ApplyFunctionToAll(Func func, Args&& ...args){
+    for(size_t i = 0; i < m_rows; ++i){
+        for(size_t j = 0; j < m_cols; ++j){
+            func(m_pMat[i][j], forward<Args>(args)...);
+        }
+    }
+}
+
+template <typename T>
+istream &operator>>(istream &is, Matrix1<T> &matrix){
+    return matrix.Read(is);
+}
+
+template<typename T>
+ostream &operator<<(ostream &os, Matrix1<T> &matrix){
+    matrix.ApplyFunctionToAll(Print4<T>, os);
+    return os;
+}
+
 #endif // __MATRIX_H__

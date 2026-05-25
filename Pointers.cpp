@@ -6,6 +6,7 @@
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -226,5 +227,38 @@ void DemoPointersVector5(){
     ofs << array5 ;
 }
 
+void DemoPointersMatrix1_1(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+    cout << "Ingrese el tamaño de la matriz:" << endl;
+    Matrix1<TI> matrix;
+    matrix.Read(cin);
+    matrix.Print(cout);
+}
+
+void DemoPointersMatrix1_2(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+    cout << "Ingrese el tamaño de la matriz:" << endl;
+    Matrix1<TI> matrix;
+    matrix.Read(cin);
+    cout << "Imprimiendo en el cout\n";
+    matrix.Print(cout);
+    cout << "Aplicando Square\n";
+    matrix.ApplyFunctionToAll(Square<TI>);
+    cout << "Imprimiendo en el cout\n";
+    matrix.Print(cout);
+}
+
 void DemoPointersMatrix1(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+
+    Matrix1<TI> matrix;
+    cout << "Ingrese el tamaño de la matriz, y luego sus elementos:" << endl;
+    cin >> matrix;
+    cout << "Imprimiendo en el cout\n";
+    cout << matrix << endl;
+
+    cout << "Aplicando Square\n";
+    matrix.ApplyFunctionToAll(Square<TI>);
+    cout << "Imprimiendo en el cout\n";
+    cout << matrix << endl;
 }
