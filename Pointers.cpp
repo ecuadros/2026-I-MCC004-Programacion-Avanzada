@@ -6,6 +6,7 @@
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -227,4 +228,15 @@ void DemoPointersVector5(){
 }
 
 void DemoPointersMatrix1(){
+        cout << "Matrix1 \n";
+    Matrix1<TI> Matrix1;
+    ifstream ifs("datosmatriz1.txt");
+
+    Matrix1.Read(ifs);
+   
+    cout << "Imprimiendo en el cout\n";
+    Matrix1.ApplyFunctionToAllMatriz(PrintMatriz<TI>, cout);
+
+    
+    cout << endl;
 }
