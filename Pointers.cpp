@@ -1,5 +1,6 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
+#include <sstream>  // istringstream
 #include "Pointers.h"
 #include "util.h"
 #include "array1.h"
