@@ -228,4 +228,5 @@ void DemoPointersVector5(){
 }
 
 void DemoPointersMatrix1(){
+  DemoPointersMatrix4();
 }
