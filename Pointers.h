@@ -10,6 +10,6 @@ void DemoPointersVector5();
 
 void DemoPointersMatrix1();
 void DemoPointersMatrix2();
-void DemoPointersMatrix4();
+void DemoPointersMatrix3();
 
 #endif // __POINTERS_H__
