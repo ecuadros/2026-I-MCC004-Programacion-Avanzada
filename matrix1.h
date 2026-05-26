@@ -46,10 +46,13 @@ void Matrix1<T>::Destroy(){
         delete[] m_pMat;
         m_pMat = nullptr;
     }
+    m_rows = 0;
+    m_cols = 0;
 }
 
 template <typename T>
 istream &Matrix1<T>::Read(istream &is){
+    Destroy();
     is >> m_rows;
     is >> m_cols;
     Create();
