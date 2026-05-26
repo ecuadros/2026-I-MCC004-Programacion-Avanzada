@@ -7,6 +7,7 @@
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
