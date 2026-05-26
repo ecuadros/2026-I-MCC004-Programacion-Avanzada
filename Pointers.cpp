@@ -236,22 +236,19 @@ void DemoPointersMatrix1(){
 }
 
 void DemoPointersMatrix4(){
-    cout << "Nivel #4 (cachimbo respetable) con matriz\n";
-    cout << "- Matriz implementada con doble puntero -\n";
+    cout << "Nivel #4: Matriz con doble puntero (**)\n";
+    cout << "- Cada fila es un arreglo dinámico independiente -\n";
 
     Matrix1<TI> matrix4;
-    istringstream iss("2 3 1 2 3 4 5 6");
+    istringstream iss("1 2 3 4 5 4 6 7");
     matrix4.Read(iss);
 
     cout << "Matriz original:\n";
-
     matrix4.Print(cout);
-    cout << "Sumar 1\n";
-    matrix4.ApplyFunctionToAll(AddOne<TI>);
+    
+    cout << "Multiplicar cada elemento por 2\n";
+    matrix4.ApplyFunctionToAll(MultiplyByTwo<TI>);
 
     cout << "Nueva Matriz:\n";
     matrix4.Print(cout);
-
-    // cout << "Operador <<\n";
-    // cout << matrix4;
 }
