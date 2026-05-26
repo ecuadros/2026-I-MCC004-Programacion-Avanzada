@@ -242,7 +242,7 @@ void DemoPointersMatrix3(){
     cout << "- Cada fila es un arreglo dinámico independiente -\n";
 
     Matrix1<int> matrix3;
-    istringstream iss("2 4 1 2 3 4 5 4 6 7");
+    istringstream iss("2 4 1 2 3 4 5 4 6 7");  // 2 filas, 4 columnas
     matrix3.Read(iss);
 
     cout << "Matriz original:\n";
