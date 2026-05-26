@@ -21,7 +21,9 @@ template <typename T>
 void AddX(T &n, T val1, T val2) { n += val1 + val2; }
 
 template <typename T>
-void AddOne(T &n) { ++n; }
+void MultiplyByTwo(T &n) {
+    n = n * 2;
+}
 
 template <typename T>
 void Square(T &n) { n *= n; }
