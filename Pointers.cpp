@@ -241,7 +241,7 @@ void DemoPointersMatrix4(){
     cout << "Nivel #4: Matriz con doble puntero (**)\n";
     cout << "- Cada fila es un arreglo dinámico independiente -\n";
 
-    Matrix1<TI> matrix4;
+    Matrix1<int> matrix4;
     istringstream iss("1 2 3 4 5 4 6 7");
     matrix4.Read(iss);
 
@@ -249,7 +249,7 @@ void DemoPointersMatrix4(){
     matrix4.Print(cout);
     
     cout << "Multiplicar cada elemento por 2\n";
-    matrix4.ApplyFunctionToAll(MultiplyByTwo<TI>);
+    matrix4.ApplyFunctionToAll(MultiplyByTwo<int>);
 
     cout << "Nueva Matriz:\n";
     matrix4.Print(cout);
