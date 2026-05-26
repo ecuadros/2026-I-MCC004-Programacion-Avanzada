@@ -234,23 +234,23 @@ void DemoPointersVector5(){
 }
 
 void DemoPointersMatrix1(){
-  DemoPointersMatrix4();
+  DemoPointersMatrix3();
 }
 
-void DemoPointersMatrix4(){
+void DemoPointersMatrix3(){
     cout << "Nivel #4: Matriz con doble puntero (**)\n";
     cout << "- Cada fila es un arreglo dinámico independiente -\n";
 
-    Matrix1<int> matrix4;
-    istringstream iss("1 2 3 4 5 4 6 7");
-    matrix4.Read(iss);
+    Matrix1<int> matrix3;
+    istringstream iss("2 4 1 2 3 4 5 4 6 7");
+    matrix3.Read(iss);
 
     cout << "Matriz original:\n";
-    matrix4.Print(cout);
+    matrix3.Print(cout);
     
     cout << "Multiplicar cada elemento por 2\n";
-    matrix4.ApplyFunctionToAll(MultiplyByTwo<int>);
+    matrix3.ApplyFunctionToAll(MultiplyByTwo<int>);
 
     cout << "Nueva Matriz:\n";
-    matrix4.Print(cout);
+    matrix3.Print(cout);
 }
