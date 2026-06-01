@@ -4,6 +4,7 @@
 #include <functional>
 #include <iostream>
 #include <cassert>
+#include <utility>  //exchange
 
 using namespace std;
 
@@ -17,6 +18,8 @@ class Matrix1 {
         size_t   m_rows = 0, m_cols = 0;
     public:
         Matrix1()      { }
+        Matrix1(Matrix1 &other) = delete; // No copy constructor
+        Matrix1(Matrix1 &&other);
         ~Matrix1()     { Destroy(); }
         void     Create();
         istream &Read(istream &is);
@@ -32,6 +35,14 @@ void Matrix1<T>::Create()
     m_pMat = new T *[m_rows];
     for(size_t i = 0 ; i < m_rows ; ++i)
         m_pMat[i] = new T[m_cols];
+}
+
+// Move constructor
+template <typename T>
+Matrix1<T>::Matrix1(Matrix1 &&other) {
+    m_pMat = exchange(other.m_pMat, nullptr);
+    m_rows = exchange(other.m_rows, 0);
+    m_cols = exchange(other.m_cols, 0);
 }
 
 template <typename T>
