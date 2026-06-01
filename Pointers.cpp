@@ -291,6 +291,7 @@ void DemoPointersMatrix2(){
     //Matrix1<TI> m1 = m2;    // Falla porque el move constructor require un rvalue, m2 es un lvalue
     //Matrix1<TI> m1 = m2 + m3;
     //Matrix1<TI> m1 = m3 * m4;
-    Matrix1<TI> m1=m2*5+m3*m4;
+    //Matrix1<TI> m1=m2*5+m3*m4;
+    Matrix1<TI> m1=5*m2+m3*m4;
     cout << m1 << endl;
 }

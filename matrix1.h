@@ -33,6 +33,8 @@ class Matrix1 {
         Matrix1 operator-(Matrix1& m);
         Matrix1 operator*(Matrix1& m);
         Matrix1 operator*(T value);
+        template <typename U>
+        friend Matrix1<U> operator*(U value, Matrix1<U>& m);
 };
 
 template <typename T>
@@ -179,6 +181,20 @@ Matrix1<T> Matrix1<T>::operator*(T value){
     for(size_t i = 0; i < res.m_rows; ++i){
         for(size_t j = 0; j < res.m_cols; ++j){
             res.m_pMat[i][j] = this->m_pMat[i][j]*value;
+        }
+    }
+    return res;
+}
+
+template <typename T>
+Matrix1<T> operator*(T value, Matrix1<T>& m){
+    Matrix1<T> res;
+    res.m_rows = m.m_rows;
+    res.m_cols = m.m_cols;
+    res.Create();
+    for(size_t i = 0; i < res.m_rows; ++i){
+        for(size_t j = 0; j < res.m_cols; ++j){
+            res.m_pMat[i][j] = m.m_pMat[i][j]*value;
         }
     }
     return res;
