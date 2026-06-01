@@ -35,7 +35,6 @@ class Matrix1 {
         void ApplyFunctionToAll(Func func, Args&& ...args);
         ostream &Print(ostream &os);
         void Destroy();
-
 };
 
 template <typename T>
@@ -225,13 +224,10 @@ Matrix1<T> Matrix1<T>::operator*(T value) const {
     return result;
 }
 
-
 // Operator(T value, const Matrix1<T> &matrix) -- Multiplica escalar por matriz cuando el escalar está a la izquierda
 template <typename T>
 Matrix1<T> operator*(T value, const Matrix1<T> &matrix) {
     return matrix * value; // Reutiliza la implementación de multiplicación escalar
 }
-
-
 
 #endif // __MATRIX_H__
