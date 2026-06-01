@@ -18,12 +18,24 @@ class Matrix1 {
     public:
         Matrix1()      { }
         ~Matrix1()     { Destroy(); }
-        void     Create();
+        Matrix1(Matrix1 &&other) noexcept; // Move constructor
+        Matrix1(const Matrix1 &other); // Copy Constructor
+ 
+        Matrix1<T> &operator=(const Matrix1<T> &other); // Operator = - Copy assignment operator
+        Matrix1<T> &operator=(Matrix1<T> &&other) noexcept; // Operator = - Move assignment operator
+
+        Matrix1<T> operator+(const Matrix1<T> &other) const; // Operator +
+        Matrix1<T> operator-(const Matrix1<T> &other) const; // Operator -
+        Matrix1<T> operator*(const Matrix1<T> &other) const; // Operator *
+        Matrix1<T> operator*(T value) const; // Operator * escalar
+
+        void Create();
         istream &Read(istream &is);
         template <typename Func, typename... Args>
         void ApplyFunctionToAll(Func func, Args&& ...args);
         ostream &Print(ostream &os);
         void Destroy();
+
 };
 
 template <typename T>
@@ -32,6 +44,29 @@ void Matrix1<T>::Create()
     m_pMat = new T *[m_rows];
     for(size_t i = 0 ; i < m_rows ; ++i)
         m_pMat[i] = new T[m_cols];
+}
+
+// Copy Constructor
+template <typename T>
+Matrix1<T>::Matrix1(const Matrix1 &other) {
+    m_rows = other.m_rows;
+    m_cols = other.m_cols;
+
+    if(other.m_pMat == nullptr) {
+    Create();
+
+    for (size_t i = 0; i < m_rows; ++i)
+        for (size_t j = 0; j < m_cols; ++j)
+            m_pMat[i][j] = other.m_pMat[i][j];
+    }
+}
+
+// Move constructor
+template <typename T>
+Matrix1<T>::Matrix1(Matrix1 &&other) noexcept {
+    m_pMat = exchange(other.m_pMat, nullptr);
+    m_rows = exchange(other.m_rows, 0);
+    m_cols = exchange(other.m_cols, 0);
 }
 
 template <typename T>
@@ -86,6 +121,117 @@ template <typename T>
 ostream &operator<<(ostream &os, Matrix1<T> &matrix) {
     return matrix.Print(os);
 }
+
+// Copy assignment operator
+template <typename T>
+Matrix1<T> &Matrix1<T>::operator=(const Matrix1<T> &other) {
+    if (this != &other) {
+        Destroy();
+
+        m_rows = other.m_rows;
+        m_cols = other.m_cols;
+       
+        If(other.m_pMat != nullptr);
+        Create();
+
+        for (size_t i = 0; i < m_rows; ++i)
+            for (size_t j = 0; j < m_cols; ++j)
+                m_pMat[i][j] = other.m_pMat[i][j];
+    }
+    return *this;
+}
+
+// Move assignment operator
+template <typename T>
+Matrix1<T> &Matrix1<T>::operator=(Matrix1<T> &&other) noexcept {
+    if (this != &other) {
+        Destroy();
+
+        m_pMat = exchange(other.m_pMat, nullptr);
+        m_rows = exchange(other.m_rows, 0);
+        m_cols = exchange(other.m_cols, 0);
+    }
+    return *this;
+}
+
+// Operator +
+template <typename T>
+Matrix1<T> Matrix1<T>::operator+(const Matrix1<T> &other) const {
+    if(m_rows != other.m_rows || m_cols != other.m_cols)
+        throw std::invalid_argument("Matrices must have the same dimensions for addition.");
+    
+    Matrix1<T> result;
+    result.m_rows = m_rows;
+    result.m_cols = m_cols;
+    result.Create();
+
+    for (size_t i = 0; i < result.m_rows; ++i)
+        for (size_t j = 0; j < result.m_cols; ++j)
+            result.m_pMat[i][j] = m_pMat[i][j] + other.m_pMat[i][j];
+
+    return result;
+}
+
+// Operator -
+template <typename T>
+Matrix1<T> Matrix1<T>::operator-(const Matrix1 &other) const {
+    if(m_rows != other.m_rows || m_cols != other.m_cols)
+        throw std::invalid_argument("Matrices must have the same dimensions for subtraction.");
+
+    Matrix1 result;
+    result.m_rows = m_rows;
+    result.m_cols = m_cols;
+    result.Create();
+
+    for (size_t i = 0; i < result.m_rows; ++i)
+        for (size_t j = 0; j < result.m_cols; ++j)
+            result.m_pMat[i][j] = m_pMat[i][j] - other.m_pMat[i][j];
+    return result;
+}
+
+// Operator(const Matrix1<T> &other)* -- Multiplica dos matrices
+template <typename T>
+Matrix1<T> Matrix1<T>::operator*(const Matrix1 &other) const {
+    if(m_cols != other.m_rows)
+        throw std::invalid_argument("Columnas de la primera matriz deben ser iguales a filas de la segunda matriz para multiplicación.");
+
+    Matrix1 result;
+    result.m_rows = m_rows;
+    result.m_cols = other.m_cols;
+    result.Create();
+
+    for (size_t i = 0; i < result.m_rows; ++i) {
+        for (size_t j = 0; j < result.m_cols; ++j) {
+            result.m_pMat[i][j] = T(); // Initialize to zero
+            for (size_t k = 0; k < m_cols; ++k)
+                result.m_pMat[i][j] += m_pMat[i][k] * other.m_pMat[k][j];
+        }
+    }
+    return result;
+}
+
+// Operator(T value)* -- Multiplica cada elemento de la matriz por un valor escalar - Operador miembro
+template <typename T>
+Matrix1<T> Matrix1<T>::operator*(T value) const {
+    Matrix1 result;
+    result.m_rows = m_rows;
+    result.m_cols = m_cols;
+    result.Create();
+
+    for (size_t i = 0; i < result.m_rows; ++i)
+        for (size_t j = 0; j < result.m_cols; ++j)
+            result.m_pMat[i][j] = m_pMat[i][j] * value;
+
+    return result;
+}
+
+
+// Operator(T value, const Matrix1<T> &matrix) -- Multiplica escalar por matriz cuando el escalar está a la izquierda
+template <typename T>
+Matrix1<T> operator*(T value, const Matrix1<T> &matrix) {
+    return matrix * value; // Reutiliza la implementación de multiplicación escalar
+}
+
 
 
 #endif // __MATRIX_H__

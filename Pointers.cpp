@@ -255,3 +255,23 @@ void DemoPointersMatrix4(){
     // cout << "Operador <<\n";
     // cout << matrix4;
 }
+
+void DemoPointersMatrixOperators(){
+    Matrix1<TI> m1, m2, m3, m4;
+
+    istringstream iss2("2 2 1 2 3 4");
+    istringstream iss3("2 3 1 2 3 4 5 6");
+    istringstream iss4("3 2 1 2 3 4 5 6");
+
+    m2.Read(iss2);
+    m3.Read(iss3);
+    m4.Read(iss4);
+
+    cout << "Matriz 2:\n" << m2;
+    cout << "Matriz 3:\n" << m3;
+    cout << "Matriz 4:\n" << m4;
+
+    m1 = 5 * m2 + m3 * m4;
+
+    cout << "Resultado de m1 = 5 * m2 + m3 * m4:\n" << m1;
+}
