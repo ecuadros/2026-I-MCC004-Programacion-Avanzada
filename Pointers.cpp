@@ -1,5 +1,6 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
+#include <sstream>  // stringstream
 #include "Pointers.h"
 #include "util.h"
 #include "array1.h"
@@ -261,4 +262,35 @@ void DemoPointersMatrix1(){
     matrix.ApplyFunctionToAll(Square<TI>);
     cout << "Imprimiendo en el cout\n";
     cout << matrix << endl;
+}
+
+void DemoPointersMatrix2(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+
+    //Matrix1<TI> m1;
+    Matrix1<TI> m2;
+    Matrix1<TI> m3;
+    Matrix1<TI> m4;
+
+    stringstream ss;
+    ss << "2 2\n1 2\n3 4\n";
+    ss >> m2;
+    ss.str("");
+    ss << "2 2\n5 6\n7 8\n";
+    ss >> m3;
+    ss.str("");
+    ss << "2 2\n9 10\n11 12\n";
+    ss >> m4;
+
+    cout << "m2:\n" << m2;
+    cout << "\nm3:\n" << m3;
+    cout << "\nm4:\n" << m4;
+    cout << endl;
+
+    cout << "operación: m1=5*m2+m3*m4\n";
+    //Matrix1<TI> m1 = m2;    // Falla porque el move constructor require un rvalue, m2 es un lvalue
+    //Matrix1<TI> m1 = m2 + m3;
+    //Matrix1<TI> m1 = m3 * m4;
+    Matrix1<TI> m1=m2*5+m3*m4;
+    cout << m1 << endl;
 }

@@ -47,7 +47,7 @@ void Matrix1<T>::Create()
 template <typename T>
 Matrix1<T>::Matrix1(Matrix1 &&other) {
     static TI mov_cnt;
-    cout << "Move constructor called : " << ++mov_cnt << endl;
+    cout << "Move constructor call #" << ++mov_cnt << endl;
     m_pMat = exchange(other.m_pMat, nullptr);
     m_rows = exchange(other.m_rows, 0);
     m_cols = exchange(other.m_cols, 0);

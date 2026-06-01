@@ -1,5 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++2b -Wall -g -pthread # Añadido -pthread
+# se agrega -fno-elide-constructors para evitar la optimización de la elisión de constructores
+# y así ver los mensajes del move constructor en la salida
+CXXFLAGS = -std=c++14 -fno-elide-constructors -Wall -g -pthread # Añadido -pthread
 LDFLAGS = -pthread # Añadido -pthread
 
 TARGET = main
