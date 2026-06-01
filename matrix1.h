@@ -29,7 +29,7 @@ class Matrix1 {
         void Destroy();
 
         // Operator overloading
-        Matrix1 operator+(Matrix1& m);
+        Matrix1 operator+(const Matrix1& m);
         Matrix1 operator-(Matrix1& m);
         Matrix1 operator*(Matrix1& m);
         Matrix1 operator*(T value);
@@ -119,7 +119,7 @@ ostream &operator<<(ostream &os, Matrix1<T> &matrix){
 }
 
 template <typename T>
-Matrix1<T> Matrix1<T>::operator+(Matrix1<T>& m){
+Matrix1<T> Matrix1<T>::operator+(const Matrix1<T>& m){
     assert(this->m_rows == m.m_rows && this->m_cols == m.m_cols);
     Matrix1<T> res;
     res.m_rows = m.m_rows;
@@ -174,6 +174,7 @@ Matrix1<T> Matrix1<T>::operator*(T value){
     Matrix1<T> res;
     res.m_rows = this->m_rows;
     res.m_cols = this->m_cols;
+    res.Create();
 
     for(size_t i = 0; i < res.m_rows; ++i){
         for(size_t j = 0; j < res.m_cols; ++j){
