@@ -7,6 +7,7 @@
 #include "polimorfismo.h"
 #include "Pointers.h"
 #include "BitSigno.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -21,7 +22,8 @@ int main() {
     // DemoPointersVector1();
     // DemoPointersVector2();
     // DemoPointersVector3();
-    DemoPointersVector4();
-    DemoPointersVector5();
+    //DemoPointersVector4();
+    //DemoPointersVector5();
+    DemoMatrix();
     return 0;
 }
