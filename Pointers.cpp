@@ -6,6 +6,7 @@
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -227,4 +228,66 @@ void DemoPointersVector5(){
 }
 
 void DemoPointersMatrix1(){
+
+    cout << "Matrix1 \n";
+    Matrix1<TI> Matrix1;
+    ifstream ifs("datosmatriz1.txt");
+
+    Matrix1.Read(ifs);
+   
+    cout << "Imprimiendo en el cout\n";
+    Matrix1.ApplyFunctionToAllMatriz(PrintMatriz<TI>, cout);
+
+    cout << "Imprimiendo en el cout\n";
+    Matrix1.ApplyFunctionToAllMatriz(PrintMatriz<TI>, cout);
+
+
+    cout << endl;
+cout <<"\n"<< Matrix1;
+
+    cout << endl;
+}
+
+
+void DemoPointersMatrix2(){
+    cout << "=== Cargando Matrices ===\n";
+    
+    Matrix1<TI> matrix1;
+    ifstream ifs1("Datamatriz1.txt");
+    matrix1.Read(ifs1);
+    ifs1.close();
+
+    Matrix1<TI> matrix2;
+    ifstream ifs2("Datosmatriz2.txt");
+    matrix2.Read(ifs2);
+    ifs2.close();
+
+    cout << "\nMatrices Originales\n";
+    cout << "Matrix1:\n";
+    cout << matrix1;
+    
+    cout << "\nMatrix2:\n";
+    cout << matrix2;
+
+
+    Matrix1<TI> suma = matrix1 + matrix2;
+    cout << "suma:\n";
+    cout << suma;
+
+ 
+    Matrix1<TI> resta = matrix1 - matrix2;
+    cout << "resta:\n";
+    cout << resta;
+
+    cout << endl;
+
+    // Operador * 
+Matrix1<TI> escalar = matrix1 * 2;
+cout << "matrix1* 2:\n";
+cout << escalar;
+
+// Operador X
+Matrix1<TI> producto = matrix1.operatorX(matrix2);
+cout << "matrix1 X matrix2:\n";
+cout << producto;
 }
