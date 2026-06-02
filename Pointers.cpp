@@ -1,4 +1,5 @@
 #include <iostream> // cout, cin, endl
+#include <sstream> // Necesario para stringstream
 #include <fstream>  // ofstream
 #include "Pointers.h"
 #include "util.h"
@@ -6,6 +7,7 @@
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -228,3 +230,60 @@ void DemoPointersVector5(){
 
 void DemoPointersMatrix1(){
 }
+
+void DemoMatrix() {
+    cout << "\n=== DEMO MATRIX ===" << endl;
+    cout << "Nivel #6 (Matrix operations)" << endl;
+    
+    // Crear matrices desde stringstreams
+    stringstream ss1(
+        "3 3\n"
+        "1 2 3\n"
+        "4 5 6\n"
+        "7 8 9\n"
+    );
+    
+    stringstream ss2(
+        "3 3\n"
+        "9 8 7\n"
+        "6 5 4\n"
+        "3 2 1\n"
+    );
+    
+    stringstream ss3(
+        "3 3\n"
+        "1 0 2\n"
+        "0 1 2\n"
+        "2 1 0\n"
+    );
+    
+    Matrix1<int> m1, m2, m3, m4;
+    
+    // Leer matrices desde los stringstreams
+    ss1 >> m2;
+    ss2 >> m3;
+    ss3 >> m4;
+    
+    cout << "\nm2:\n";
+    cout << m2 << endl;
+    
+    cout << "m3:\n";
+    cout << m3 << endl;
+    
+    cout << "m4:\n";
+    cout << m4 << endl;
+    
+    // LA OPERACIÓN PRINCIPAL: m1 = 5*m2 + m3*m4
+    cout << "\nCalculando m1 = 5*m2 + m3*m4..." << endl;
+    m1 = 5 * m2 + m3 * m4;
+    
+    cout << "Resultado:\n";
+    cout << m1 << endl;
+
+// Aplicar funcion a todos los elementos
+cout << "\nPrueba de aplicar la funcion a todos los elementos: " << endl;
+cout << "Aplicando AddX (sumar 1 y 3) a m2:" << endl;
+m2.ApplyFunctionToAll(AddX<int>, 1, 3);
+cout << m2 << endl;
+}
+
