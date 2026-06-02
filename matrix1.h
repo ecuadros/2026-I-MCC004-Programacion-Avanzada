@@ -49,6 +49,7 @@ void Matrix1<T>::Create()
 }
 
 // copy constructor
+
 template <typename T>
 Matrix1<T>::Matrix1(Matrix1 &other) : m_rows(other.m_rows), m_cols(other.m_cols) {
     if (m_rows > 0 && m_cols > 0) {
@@ -196,17 +197,7 @@ Matrix1<T> Matrix1<T>::operator*(const Matrix1 &other) const {
     return result;
 };
 
-/*
-template <typename T>
-Matrix1<T> Matrix1<T>::operator=(Matrix1&& other){
-    if(this == &other) return *this;
-    Destroy();
-    m_pMat = exchange(other.m_pMat, nullptr);
-    m_cols = exchange(other.m_cols, 0);
-    m_rows = exchange(other.m_rows, 0);
-    return *this;
-};
-*/
+
 
 
 
