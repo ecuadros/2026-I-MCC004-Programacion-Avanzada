@@ -18,7 +18,7 @@ class Matrix1 {
         size_t   m_rows = 0, m_cols = 0;
     public:
         Matrix1(size_t rows=0, size_t cols=0) : m_rows(rows), m_cols(cols) { } // constructor
-        Matrix1(Matrix1 &other); // No copy constructor
+        Matrix1(Matrix1 &other); // copy constructor
         Matrix1& operator=(Matrix1 &other);
 
         Matrix1(Matrix1 &&other); // move constructor
@@ -120,6 +120,7 @@ void Matrix1<T>::ApplyFunctionToAll(Func func, Args&& ...args){
 
 template <typename T>
 ostream &Matrix1<T>::Print(ostream &os){
+    os << m_rows << " " << m_cols << endl;
     for(size_t i = 0 ; i < m_rows ; ++i){
         for(size_t j = 0 ; j < m_cols ; ++j)
             os << m_pMat[i][j] << " ";
