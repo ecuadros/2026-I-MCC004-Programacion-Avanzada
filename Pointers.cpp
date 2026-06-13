@@ -1,6 +1,8 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
 #include "Pointers.h"
+#include <sstream>
+#include "matrix1.h"
 #include "util.h"
 #include "array1.h"
 #include "array2.h"
@@ -226,5 +228,15 @@ void DemoPointersVector5(){
     ofs << array5 ;
 }
 
-void DemoPointersMatrix1(){
+void DemoPointersMatrix1()
+{
+    cout << "\n===== Demo de Matrix =====\n";
+
+    Matrix1<int> m;
+
+    cout << "Ingrese filas, columnas y luego los valores de la matriz:\n";
+    cin >> m;
+
+    cout << "\nMatriz ingresada:\n";
+    cout << m;
 }
