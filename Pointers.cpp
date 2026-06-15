@@ -294,4 +294,11 @@ void DemoPointersMatrix2(){
     //Matrix1<TI> m1=m2*5+m3*m4;
     Matrix1<TI> m1=5*m2+m3*m4;
     cout << m1 << endl;
+
+    cout << "acceso a elemento: m1[0][1]\n";
+    cout << m1[0][1] << endl;
+
+    cout <<  "modificación de elemento: m1[0][1] = 99\n";
+    m1[0][1] = 99;
+    cout << m1[0][1] << endl;
 }

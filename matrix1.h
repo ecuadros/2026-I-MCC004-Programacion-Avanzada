@@ -35,6 +35,8 @@ class Matrix1 {
         Matrix1 operator*(T value);
         template <typename U>
         friend Matrix1<U> operator*(U value, Matrix1<U>& m);
+        T* operator[](size_t n);
+        const T* operator[](size_t n) const;
 };
 
 template <typename T>
@@ -198,6 +200,18 @@ Matrix1<T> operator*(T value, Matrix1<T>& m){
         }
     }
     return res;
+}
+
+template <typename T>
+T* Matrix1<T>::operator[](size_t n){
+    assert(n < this->m_rows);
+    return this->m_pMat[n];
+}
+
+template <typename T>
+const T* Matrix1<T>::operator[](size_t n) const{
+    assert(n < this->m_rows);
+    return this->m_pMat[n];
 }
 
 #endif // __MATRIX_H__
