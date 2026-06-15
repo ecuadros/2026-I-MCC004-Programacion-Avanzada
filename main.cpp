@@ -68,18 +68,58 @@ void DemoMatrix13()
 
 void DemoMatrix14()
 {
-    Matrix1<int> m;
+    size_t filas, columnas;
 
-    cout << "Ingrese matriz:" << endl;
-    cin >> m;
+    cout << "Ingrese numero de filas: ";
+    cin >> filas;
+
+    cout << "Ingrese numero de columnas: ";
+    cin >> columnas;
+
+    Matrix1<int> m(filas, columnas);
+
+    cout << endl;
+    cout << "Ingrese los valores de la matriz:" << endl;
+
+    for(size_t i = 0 ; i < filas ; ++i)
+    {
+        for(size_t j = 0 ; j < columnas ; ++j)
+        {
+            cout << "m[" << i << "][" << j << "] = ";
+            cin >> m[i][j];
+        }
+    }
 
     cout << endl;
     cout << "Matriz original:" << endl;
     cout << m;
 
-    m[0][1] = 8;
+    size_t fila, columna;
+    int valor;
 
     cout << endl;
-    cout << "Matriz modificada con m[0][1] = 8:" << endl;
+    cout << "Ingrese fila a modificar: ";
+    cin >> fila;
+
+    cout << "Ingrese columna a modificar: ";
+    cin >> columna;
+
+    cout << "Ingrese nuevo valor: ";
+    cin >> valor;
+
+    m[fila][columna] = valor;
+
+    if(fila < filas && columna < columnas)
+{
+    m[fila][columna] = valor;
+
+    cout << endl;
+    cout << "Matriz modificada usando m[fila][columna] = valor:" << endl;
     cout << m;
+}
+else
+{
+    cout << endl;
+    cout << "La posicion ingresada no existe en la matriz." << endl;
+}
 }

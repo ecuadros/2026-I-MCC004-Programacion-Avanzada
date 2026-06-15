@@ -20,6 +20,7 @@ class Matrix1 {
         size_t m_rows=0,m_cols=0;
     public:
         Matrix1(){ }
+        Matrix1(size_t rows, size_t cols);
         ~Matrix1(){ Destroy(); }
         Matrix1(Matrix1 &&other) noexcept;
         Matrix1(const Matrix1 &other);
@@ -29,16 +30,21 @@ class Matrix1 {
         Matrix1<T> operator-(const Matrix1<T> &other) const;
         Matrix1<T> operator*(const Matrix1<T> &other) const;
         Matrix1<T> operator*(T value) const;
-        //rama 14
+        //rama 14:acceso como m[fila][columna]
         T* operator[](size_t fila);
         const T* operator[](size_t fila) const;
-
+        void Set(size_t i, size_t j, T value);
+        T Get(size_t i, size_t j) const;
+        size_t Rows() const;
+        size_t Cols() const;
+        
         void Create();
         istream &Read(istream &is);
         template <typename Func, typename... Args>
         void ApplyFunctionToAll(Func func, Args&& ...args);
         ostream &Print(ostream &os);
         void Destroy();
+
 };
 
 template <typename T>
@@ -50,6 +56,17 @@ void Matrix1<T>::Create()
         m_pMat[i] = new T[m_cols];
 }
 
+template <typename T> //creará una matriz filas y columnas
+Matrix1<T>::Matrix1(size_t rows, size_t cols)
+{
+    m_rows = rows;
+    m_cols = cols;
+    Create();
+
+    for(size_t i = 0 ; i < m_rows ; ++i)
+        for(size_t j = 0 ; j < m_cols ; ++j)
+            m_pMat[i][j] = T();
+}
 template <typename T>
 Matrix1<T>::Matrix1(Matrix1<T> &&other) noexcept
 {
@@ -60,13 +77,11 @@ Matrix1<T>::Matrix1(Matrix1<T> &&other) noexcept
 
 template <typename T>
 Matrix1<T>::Matrix1(const Matrix1<T> &other)
-{
-    m_rows = other.m_rows;
+{   m_rows = other.m_rows;
     m_cols = other.m_cols;
 
     if(other.m_pMat != nullptr)
-    {
-        Create();
+    {  Create();
         for(size_t i = 0 ; i < m_rows ; ++i)
             for(size_t j = 0 ; j < m_cols ; ++j)
                 m_pMat[i][j] = other.m_pMat[i][j];
@@ -211,6 +226,35 @@ const T* Matrix1<T>::operator[](size_t fila) const
     return m_pMat[fila];
 }
 
+template <typename T>
+void Matrix1<T>::Set(size_t i, size_t j, T value)
+{
+    if(i >= m_rows || j >= m_cols)
+        throw out_of_range("Indice fuera de rango");
+
+    m_pMat[i][j] = value;
+}
+
+template <typename T>
+T Matrix1<T>::Get(size_t i, size_t j) const
+{
+    if(i >= m_rows || j >= m_cols)
+        throw out_of_range("Indice fuera de rango");
+
+    return m_pMat[i][j];
+}
+
+template <typename T>
+size_t Matrix1<T>::Rows() const
+{
+    return m_rows;
+}
+
+template <typename T>
+size_t Matrix1<T>::Cols() const
+{
+    return m_cols;
+}
 // parte para completar 
 template <typename T>
 istream &Matrix1<T>::Read(istream &is)
