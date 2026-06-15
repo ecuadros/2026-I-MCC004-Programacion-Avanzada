@@ -26,6 +26,8 @@ void DemoMatrix1()
 }
 
 void DemoMatrix13();
+void DemoMatrix14();
+
 // Ernesto Cuadros
 // g++ -std=c++2b main.cpp util.cpp -o main
 int main() {
@@ -40,7 +42,7 @@ int main() {
     // DemoPointersVector4();
     // DemoPointersVector5();
     
-    DemoMatrix13();
+    DemoMatrix14();
     return 0;
 }
 
@@ -62,4 +64,22 @@ void DemoMatrix13()
     cout << endl;
     cout << "Resultado:" << endl;
     cout << m1;
+}
+
+void DemoMatrix14()
+{
+    Matrix1<int> m;
+
+    cout << "Ingrese matriz:" << endl;
+    cin >> m;
+
+    cout << endl;
+    cout << "Matriz original:" << endl;
+    cout << m;
+
+    m[0][1] = 8;
+
+    cout << endl;
+    cout << "Matriz modificada con m[0][1] = 8:" << endl;
+    cout << m;
 }

@@ -7,6 +7,7 @@
 #include <utility>
 #include <stdexcept>
 
+
 using namespace std;
 
 template <typename T>
@@ -28,6 +29,9 @@ class Matrix1 {
         Matrix1<T> operator-(const Matrix1<T> &other) const;
         Matrix1<T> operator*(const Matrix1<T> &other) const;
         Matrix1<T> operator*(T value) const;
+        //rama 14
+        T* operator[](size_t fila);
+        const T* operator[](size_t fila) const;
 
         void Create();
         istream &Read(istream &is);
@@ -188,7 +192,26 @@ Matrix1<T> Matrix1<T>::operator*(const Matrix1<T> &other) const
 
     return result;
 }
-// parte para completar
+
+template <typename T>
+T* Matrix1<T>::operator[](size_t fila)
+{
+    if(fila >= m_rows)
+        throw out_of_range("Fila fuera de rango");
+
+    return m_pMat[fila];
+}
+
+template <typename T>
+const T* Matrix1<T>::operator[](size_t fila) const
+{
+    if(fila >= m_rows)
+        throw out_of_range("Fila fuera de rango");
+
+    return m_pMat[fila];
+}
+
+// parte para completar 
 template <typename T>
 istream &Matrix1<T>::Read(istream &is)
 { Destroy();
