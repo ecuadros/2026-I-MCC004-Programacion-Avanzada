@@ -4,6 +4,12 @@ CXX = g++
 CXXFLAGS = -std=c++14 -fno-elide-constructors -Wall -g -pthread # Añadido -pthread
 LDFLAGS = -pthread # Añadido -pthread
 
+PYBIND_INC = $(shell python3 -m pybind11 --includes)
+PY_SUFFIX  = $(shell python3-config --extension-suffix)
+MODULE_FLG = -O3 -Wall -shared -std=c++14 -fPIC
+MODULE_SRC = matrix_module.cpp
+MODULE_OUT = matrix_module$(PY_SUFFIX)
+
 TARGET = main
 SRCS = main.cpp util.cpp \
        complex.cpp \
@@ -29,5 +35,8 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+
+module:
+	$(CXX) $(MODULE_FLG) $(PYBIND_INC) $(MODULE_SRC) -o $(MODULE_OUT)
 
 .PHONY: all clean

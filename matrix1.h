@@ -8,8 +8,8 @@
 
 using namespace std;
 
-//template <typename T>
-//void Print4(T &n, ostream &os) { os << n << " "; }
+template <typename T>
+void PrintM(T &n, ostream &os) { os << n << " "; }
 
 template <typename T>
 class Matrix1 {
@@ -18,6 +18,7 @@ class Matrix1 {
         size_t   m_rows = 0, m_cols = 0;
     public:
         Matrix1()      { }
+        Matrix1(size_t rows, size_t cols) : m_rows(rows), m_cols(cols) { Create(); }
         Matrix1(Matrix1 &other) = delete; // No copy constructor
         Matrix1(Matrix1 &&other);
         ~Matrix1()     { Destroy(); }
@@ -29,14 +30,17 @@ class Matrix1 {
         void Destroy();
 
         // Operator overloading
-        Matrix1 operator+(const Matrix1& m);
-        Matrix1 operator-(Matrix1& m);
-        Matrix1 operator*(Matrix1& m);
-        Matrix1 operator*(T value);
+        Matrix1 operator+(const Matrix1& m) const;
+        Matrix1 operator-(const Matrix1& m) const;
+        Matrix1 operator*(const Matrix1& m) const;
+        Matrix1 operator*(T value) const;
         template <typename U>
         friend Matrix1<U> operator*(U value, Matrix1<U>& m);
         T* operator[](size_t n);
         const T* operator[](size_t n) const;
+
+        size_t Rows() const { return m_rows; }
+        size_t Cols() const { return m_cols; }
 };
 
 template <typename T>
@@ -118,12 +122,12 @@ istream &operator>>(istream &is, Matrix1<T> &matrix){
 
 template<typename T>
 ostream &operator<<(ostream &os, Matrix1<T> &matrix){
-    matrix.ApplyFunctionToAll(Print4<T>, os);
+    matrix.ApplyFunctionToAll(PrintM<T>, os);
     return os;
 }
 
 template <typename T>
-Matrix1<T> Matrix1<T>::operator+(const Matrix1<T>& m){
+Matrix1<T> Matrix1<T>::operator+(const Matrix1<T>& m) const {
     assert(this->m_rows == m.m_rows && this->m_cols == m.m_cols);
     Matrix1<T> res;
     res.m_rows = m.m_rows;
@@ -139,7 +143,7 @@ Matrix1<T> Matrix1<T>::operator+(const Matrix1<T>& m){
 }
 
 template <typename T>
-Matrix1<T> Matrix1<T>::operator-(Matrix1<T>& m){
+Matrix1<T> Matrix1<T>::operator-(const Matrix1<T>& m) const {
     assert(this->m_rows == m.m_rows && this->m_cols == m.m_cols);
     Matrix1<T> res;
     res.m_rows = m.m_rows;
@@ -155,7 +159,7 @@ Matrix1<T> Matrix1<T>::operator-(Matrix1<T>& m){
 }
 
 template <typename T>
-Matrix1<T> Matrix1<T>::operator*(Matrix1<T>& m){
+Matrix1<T> Matrix1<T>::operator*(const Matrix1<T>& m) const{
     assert(this->m_cols == m.m_rows);
     Matrix1<T> res;
     res.m_rows = this->m_rows;
@@ -174,7 +178,7 @@ Matrix1<T> Matrix1<T>::operator*(Matrix1<T>& m){
 }
 
 template <typename T>
-Matrix1<T> Matrix1<T>::operator*(T value){
+Matrix1<T> Matrix1<T>::operator*(T value) const {
     Matrix1<T> res;
     res.m_rows = this->m_rows;
     res.m_cols = this->m_cols;
