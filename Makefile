@@ -36,7 +36,7 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-module:
+pymatrix:
 	$(CXX) $(MODULE_FLG) $(PYBIND_INC) $(MODULE_SRC) -o $(MODULE_OUT)
 
 .PHONY: all clean
