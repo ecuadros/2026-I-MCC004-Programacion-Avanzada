@@ -1,5 +1,7 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
+#include <sstream>
+#include "matrix1.h"
 #include "Pointers.h"
 #include "util.h"
 #include "array1.h"
@@ -20,6 +22,9 @@ void AddX(T &n, T val1, T val2) { n += val1 + val2; }
 
 template <typename T>
 void Square(T &n) { n *= n; }
+
+template <typename T>
+void AddOne(T &n) { ++n; }
 
 // C/C++/C++11...
 void f1(TI  n)  { ++n; }
@@ -226,5 +231,20 @@ void DemoPointersVector5(){
     ofs << array5 ;
 }
 
-void DemoPointersMatrix1(){
+void DemoPointersMatrix1()
+{
+    cout << "Prueba de Matrix1 con doble puntero" << endl;
+
+    Matrix1<TI> matriz;
+    // Datos de prueba: 2 filas, 3 columnas y valores: 1,2,3,4,5y6
+    istringstream entrada("2 3 1 2 3 4 5 6");
+    matriz.Read(entrada);
+
+    cout << "Matriz original:" << endl;
+    matriz.Print(cout);
+
+    matriz.ApplyFunctionToAll(AddOne<TI>);
+
+    cout << "Matriz con un valor sumado a cada elemento:" << endl;
+    matriz.Print(cout);
 }

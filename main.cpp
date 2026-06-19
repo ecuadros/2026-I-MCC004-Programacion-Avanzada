@@ -21,11 +21,11 @@ void DemoMatrix1()
     cout<<m;
     cout<<endl;
     cout<<"El resultado sería:"<<endl;
-    m.ApplyFunctionToAll(Print4<int>,cout);
+    m.ApplyFunctionToAll(PrintMatrix<int>, cout);
     cout<<endl;
 }
 // Ernesto Cuadros
-// g++ -std=c++2b main.cpp util.cpp -o main
+
 int main() {
     // DemoFunctions();
     // DemoComplex();
@@ -38,6 +38,7 @@ int main() {
     // DemoPointersVector4();
     // DemoPointersVector5();
     
-    DemoMatrix1();
+    DemoPointersMatrix1();
+    
     return 0;
 }
