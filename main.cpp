@@ -9,7 +9,9 @@
 #include "BitSigno.h"
 #include "matrix1.h"
 
+
 using namespace std;
+
 
 void DemoMatrix1()
 {   cout<<"Demo Matrix1" << endl;
@@ -25,6 +27,7 @@ void DemoMatrix1()
     cout<<endl;
 }
 
+
 void DemoMatrix13();
 // Ernesto Cuadros
 // g++ -std=c++2b main.cpp util.cpp -o main
@@ -39,25 +42,31 @@ int main() {
     // DemoPointersVector3();
     // DemoPointersVector4();
     // DemoPointersVector5();
-    
+   
     DemoMatrix13();
     return 0;
 }
+
 
 void DemoMatrix13()
 {
     Matrix1<int> m1, m2, m3, m4;
 
+
     cout << "Ingrese m2:" << endl;
     cin >> m2;
+
 
     cout << "Ingrese m3:" << endl;
     cin >> m3;
 
+
     cout << "Ingrese m4:" << endl;
     cin >> m4;
 
+
     m1 = 5 * m2 + m3 * m4;
+
 
     cout << endl;
     cout << "Resultado:" << endl;

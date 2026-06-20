@@ -7,10 +7,13 @@
 #include <utility>
 #include <stdexcept>
 
+
 using namespace std;
+
 
 template <typename T>
 void Print4(T &n, ostream &os) { os << n << " "; }
+
 
 template <typename T>
 class Matrix1 {
@@ -29,6 +32,7 @@ class Matrix1 {
         Matrix1<T> operator*(const Matrix1<T> &other) const;
         Matrix1<T> operator*(T value) const;
 
+
         void Create();
         istream &Read(istream &is);
         template <typename Func, typename... Args>
@@ -37,14 +41,16 @@ class Matrix1 {
         void Destroy();
 };
 
+
 template <typename T>
 void Matrix1<T>::Create()
 {   assert(m_rows>0 && m_cols > 0);
     m_pMat = new T*[m_rows];
-    for(size_t i = 
+    for(size_t i =
         0 ; i < m_rows ; ++i)
         m_pMat[i] = new T[m_cols];
 }
+
 
 template <typename T>
 Matrix1<T>::Matrix1(Matrix1<T> &&other) noexcept
@@ -54,11 +60,13 @@ Matrix1<T>::Matrix1(Matrix1<T> &&other) noexcept
     m_cols = exchange(other.m_cols, 0);
 }
 
+
 template <typename T>
 Matrix1<T>::Matrix1(const Matrix1<T> &other)
 {
     m_rows = other.m_rows;
     m_cols = other.m_cols;
+
 
     if(other.m_pMat != nullptr)
     {
@@ -69,6 +77,7 @@ Matrix1<T>::Matrix1(const Matrix1<T> &other)
     }
 }
 
+
 template <typename T>
 Matrix1<T> &Matrix1<T>::operator=(const Matrix1<T> &other)
 {
@@ -76,12 +85,15 @@ Matrix1<T> &Matrix1<T>::operator=(const Matrix1<T> &other)
     {
         Destroy();
 
+
         m_rows = other.m_rows;
         m_cols = other.m_cols;
+
 
         if(other.m_pMat != nullptr)
         {
             Create();
+
 
             for(size_t i = 0 ; i < m_rows ; ++i)
                 for(size_t j = 0 ; j < m_cols ; ++j)
@@ -89,8 +101,10 @@ Matrix1<T> &Matrix1<T>::operator=(const Matrix1<T> &other)
         }
     }
 
+
     return *this;
 }
+
 
 template <typename T>
 Matrix1<T> &Matrix1<T>::operator=(Matrix1<T> &&other) noexcept
@@ -102,8 +116,11 @@ Matrix1<T> &Matrix1<T>::operator=(Matrix1<T> &&other) noexcept
         m_cols = exchange(other.m_cols, 0);
     }
 
+
     return *this;
 }
+
+
 
 
 //operator +
@@ -113,17 +130,21 @@ Matrix1<T> Matrix1<T>::operator+(const Matrix1<T> &other) const
     if(m_rows != other.m_rows || m_cols != other.m_cols)
         throw invalid_argument("Dimensiones incompatibles");
 
+
     Matrix1<T> result;
     result.m_rows = m_rows;
     result.m_cols = m_cols;
     result.Create();
 
+
     for(size_t i = 0 ; i < m_rows ; ++i)
         for(size_t j = 0 ; j < m_cols ; ++j)
             result.m_pMat[i][j] = m_pMat[i][j] + other.m_pMat[i][j];
 
+
     return result;
 }
+
 
 //operator-
 template <typename T>
@@ -132,17 +153,21 @@ Matrix1<T> Matrix1<T>::operator-(const Matrix1<T> &other) const
     if(m_rows != other.m_rows || m_cols != other.m_cols)
         throw invalid_argument("Dimensiones incompatibles");
 
+
     Matrix1<T> result;
     result.m_rows = m_rows;
     result.m_cols = m_cols;
     result.Create();
 
+
     for(size_t i = 0 ; i < m_rows ; ++i)
         for(size_t j = 0 ; j < m_cols ; ++j)
             result.m_pMat[i][j] = m_pMat[i][j] - other.m_pMat[i][j];
 
+
     return result;
 }
+
 
 //muptiplicación operador
 template <typename T>
@@ -150,17 +175,22 @@ Matrix1<T> Matrix1<T>::operator*(T value) const
 {
     Matrix1<T> result;
 
+
     result.m_rows = m_rows;
     result.m_cols = m_cols;
 
+
     result.Create();
+
 
     for(size_t i = 0 ; i < m_rows ; ++i)
         for(size_t j = 0 ; j < m_cols ; ++j)
             result.m_pMat[i][j] = m_pMat[i][j] * value;
 
+
     return result;
 }
+
 
 template <typename T>
 Matrix1<T> Matrix1<T>::operator*(const Matrix1<T> &other) const
@@ -168,12 +198,16 @@ Matrix1<T> Matrix1<T>::operator*(const Matrix1<T> &other) const
     if(m_cols != other.m_rows)
         throw invalid_argument("Dimensiones incompatibles para multiplicacion");
 
+
     Matrix1<T> result;
+
 
     result.m_rows = m_rows;
     result.m_cols = other.m_cols;
 
+
     result.Create();
+
 
     for(size_t i = 0 ; i < result.m_rows ; ++i)
     {
@@ -181,10 +215,12 @@ Matrix1<T> Matrix1<T>::operator*(const Matrix1<T> &other) const
         {
             result.m_pMat[i][j] = T();
 
+
             for(size_t k = 0 ; k < m_cols ; ++k)
                 result.m_pMat[i][j] += m_pMat[i][k] * other.m_pMat[k][j];
         }
     }
+
 
     return result;
 }
@@ -201,6 +237,7 @@ istream &Matrix1<T>::Read(istream &is)
     return is;
 }
 
+
 template <typename T>
 template <typename Func, typename... Args>
 void Matrix1<T>::ApplyFunctionToAll(Func func, Args&& ...args)
@@ -209,6 +246,7 @@ void Matrix1<T>::ApplyFunctionToAll(Func func, Args&& ...args)
         {func(m_pMat[i][j], args...);}
     }
 }
+
 
 template <typename T>
 ostream &Matrix1<T>::Print(ostream &os)
@@ -220,8 +258,10 @@ ostream &Matrix1<T>::Print(ostream &os)
         os << endl;
     }
 
+
     return os;
 }
+
 
 template <typename T>
 void Matrix1<T>::Destroy()
@@ -235,18 +275,22 @@ void Matrix1<T>::Destroy()
     m_cols = 0;
 }
 
+
 template <typename T>
 istream &operator>>(istream &is, Matrix1<T> &mat)
 {return mat.Read(is);}
 
+
 template <typename T>
 ostream &operator<<(ostream &os, Matrix1<T> &mat)
 {return mat.Print(os);}
+
 
 template <typename T>
 Matrix1<T> operator*(T value, const Matrix1<T> &matrix)
 {
     return matrix * value;
 }
+
 
 #endif // __MATRIX_H__
