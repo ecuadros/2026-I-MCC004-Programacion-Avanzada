@@ -1,0 +1,8 @@
+PROJECT_NAME      = "Matrix1"
+OUTPUT_DIRECTORY  = docs
+INPUT             = matrix1.h
+FILE_PATTERNS     = *.h
+GENERATE_HTML     = YES
+GENERATE_LATEX    = NO
+EXTRACT_ALL       = YES
+QUIET             = YES
