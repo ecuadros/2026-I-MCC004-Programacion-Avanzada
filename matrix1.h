@@ -18,9 +18,10 @@ class Matrix1 {
     private:
         T      **m_pMat = nullptr;
         size_t   m_rows = 0, m_cols = 0;
+
     public:
         Matrix1()      { };
-        Matrix1(Matrix1 &other) ; 
+        Matrix1(Matrix1 &other) ;
         Matrix1(Matrix1 &&other); 
         ~Matrix1()     { Destroy(); }
         void     Create();
@@ -29,11 +30,14 @@ class Matrix1 {
         //void ApplyFunctionToAll(Func func, Args&& ...args);
         void ApplyFunctionToAllMatriz(Func func, Args&&... args);
         ostream &Print(ostream &os);
-        Matrix1(size_t rows, size_t cols);
+        size_t   getRows() const { return m_rows; }
+        size_t   getCols() const { return m_cols; }
+        Matrix1(size_t rows, size_t cols); 
         Matrix1 operator+(const Matrix1 &other) const;
         Matrix1 operator-(const Matrix1 &other) const;
         Matrix1 operatorX(const Matrix1 &other) const; 
         Matrix1 operator*(T value) const;
+
 
         void Destroy();
 };
@@ -50,7 +54,7 @@ void Matrix1<T>::Create()
 template <typename T>
 Matrix1<T>::Matrix1(size_t rows, size_t cols) 
     : m_rows(rows), m_cols(cols) {
-    Create();  // ya tienes este método que reserva memoria
+    Create();
 }
 
 template <typename T>
@@ -63,15 +67,7 @@ istream &Matrix1<T>::Read(istream &is) {
             is >> m_pMat[i][j];
     return is;
 }
-
-//template <typename T>
-//template <typename Func, typename... Args>
-//void Matrix1<T>::ApplyFunctionToAll(Func func, Args&&... args) {
-//    for (size_t i = 0; i < m_rows; ++i)
-//        for (size_t j = 0; j < m_cols; ++j)
-//            func(m_pMat[i][j], forward<Args>(args)...);
-//}
-
+// 
 template <typename T>
 template <typename Func, typename... Args>
 void Matrix1<T>::ApplyFunctionToAllMatriz(Func func, Args&&... args) {
@@ -81,6 +77,7 @@ void Matrix1<T>::ApplyFunctionToAllMatriz(Func func, Args&&... args) {
         }
     }
 }
+
 
 template <typename T>
 ostream &Matrix1<T>::Print(ostream &os) {
@@ -137,13 +134,12 @@ Matrix1<T>::Matrix1(Matrix1 &other){
 template <typename T>
 Matrix1<T> Matrix1<T>::operator+(const Matrix1 &other) const
 {
-    // Verificar que las dimensiones coincidan
-
+    
     if (m_rows != other.m_rows || m_cols != other.m_cols) {
         cout << "Matrix no pueden sumarse debido a dimensiones incompatibles." << endl;
     }
 
-    Matrix1<T> suma(m_rows, m_cols); // Crear una nueva matriz para el resultado de la suma, utilizando el constructor que acepta filas y columnas.
+    Matrix1<T> suma(m_rows, m_cols); 
     for (size_t i = 0; i < m_rows; ++i) {
         for (size_t j = 0; j < m_cols; ++j) {
             suma.m_pMat[i][j] = m_pMat[i][j] + other.m_pMat[i][j];
@@ -155,12 +151,11 @@ Matrix1<T> Matrix1<T>::operator+(const Matrix1 &other) const
 template <typename T>
 Matrix1<T> Matrix1<T>::operator-(const Matrix1 &other) const
 {
-    // Verificar que las dimensiones coincidan
 
     if (m_rows != other.m_rows || m_cols != other.m_cols) {
         cout << "Matrix no pueden sumarse debido a dimensiones incompatibles." << endl;
     }
-    Matrix1<T> resta(m_rows, m_cols); // Crear una nueva matriz para el resultado de la resta, utilizando el constructor que acepta filas y columnas.
+    Matrix1<T> resta(m_rows, m_cols); 
     for (size_t i = 0; i < m_rows; ++i) {
         for (size_t j = 0; j < m_cols; ++j) {
             resta.m_pMat[i][j] = m_pMat[i][j] - other.m_pMat[i][j];
@@ -174,7 +169,7 @@ template <typename T>
 Matrix1<T> Matrix1<T>::operatorX(const Matrix1 &other) const {
     if (m_cols != other.m_rows) {
         cout << "Dimensiones incompatibles para multiplicación." << endl;
-        return Matrix1<T>(0, 0);  // matriz vacía
+        return Matrix1<T>(0, 0);
     }
     Matrix1<T> result(m_rows, other.m_cols);
     for (size_t i = 0; i < m_rows; ++i) {
@@ -192,7 +187,7 @@ Matrix1<T> Matrix1<T>::operatorX(const Matrix1 &other) const {
 template <typename T>
 Matrix1<T> Matrix1<T>::operator*(T value) const
 {
-    Matrix1<T> result(m_rows, m_cols); // Crear una nueva matriz para el resultado de la multiplicación.
+    Matrix1<T> result(m_rows, m_cols);
     for (size_t i = 0; i < m_rows; ++i) {
         for (size_t j = 0; j < m_cols; ++j) {
             result.m_pMat[i][j] = m_pMat[i][j] * value;

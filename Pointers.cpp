@@ -290,4 +290,11 @@ cout << escalar;
 Matrix1<TI> producto = matrix1.operatorX(matrix2);
 cout << "matrix1 X matrix2:\n";
 cout << producto;
+
+Matrix1<TI> m1 = (matrix1 * 5) +producto;
+cout << "Resultado de m1 = 5*m1 + m1*m2:\n" << m1 << endl;
+
+
 }
+
+
