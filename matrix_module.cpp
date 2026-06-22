@@ -34,8 +34,41 @@ void declare_matrix(py::module &m, const std::string &type_name) {
         .def("__getitem__", &RowProxy<T>::Get)  // Reading values via the second brackets: value = row[col]
         .def("__setitem__", &RowProxy<T>::Set); // Writing values via the second brackets: row[col] = value
 
-    py::class_<Matrix1<T>>(m, ("Matrix1" + type_name).c_str())
+    py::class_<Matrix1<T>> matrix_class(m, ("Matrix1" + type_name).c_str());
+
+    matrix_class
         .def(py::init<size_t, size_t>(), py::arg("rows"), py::arg("cols"))
+
+        // --- NUEVO CONSTRUCTOR DESDE LISTAS DE PYTHON ---
+        .def(py::init([](py::list list_of_lists) {
+            size_t rows = list_of_lists.size();
+            if (rows == 0) {
+                return std::make_unique<Matrix1<T>>(0, 0);
+            }
+
+            if (!py::isinstance<py::list>(list_of_lists[0])) {
+                throw py::type_error("Se esperaba una lista de listas (matriz 2D)");
+            }
+            size_t cols = list_of_lists[0].cast<py::list>().size();
+
+            auto mat = std::make_unique<Matrix1<T>>(rows, cols);
+
+            for (size_t r = 0; r < rows; ++r) {
+                if (!py::isinstance<py::list>(list_of_lists[r])) {
+                    throw py::type_error("Todos los elementos de las filas deben ser listas");
+                }
+
+                py::list row_list = list_of_lists[r].cast<py::list>();
+                if (row_list.size() != cols) {
+                    throw py::value_error("Todas las filas deben tener la misma cantidad de columnas");
+                }
+
+                for (size_t c = 0; c < cols; ++c) {
+                    (*mat)[r][c] = row_list[c].cast<T>();
+                }
+            }
+            return mat;
+        }))
 
         .def_property_readonly("shape", [](const Matrix1<T> &self) {
             return std::make_tuple(self.Rows(), self.Cols());
@@ -75,6 +108,8 @@ void declare_matrix(py::module &m, const std::string &type_name) {
             }
             return result;
         }, py::arg("func"), "Aplica una función de Python a cada elemento de la matriz");
+
+        py::implicitly_convertible<py::list, Matrix1<T>>();
 }
 
 PYBIND11_MODULE(matrix_module, m) {

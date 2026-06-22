@@ -20,7 +20,15 @@ m1 = m2 * m3
 
 print("\nShape of m1:", m1.shape)
 print("Contents of m1:", m1)
-print("Value at m1[0][1]:", m1[0][1])
+
+print("\nValue at m1[0][1]:", m1[0][1])
 print("Value at m1[-2][1]", m1[-2][-1])
+
 m1_cuadrado = m1.apply(lambda x: x ** 2)
-print("Elementos de m1 al cuadrado: ", m1_cuadrado);
+print("\nElements of m1 squared: ", m1_cuadrado);
+
+
+m4 = Matrix1Double([[1.0, 2.0, 3.0],
+                    [4.0, 5.0, 6.0]])
+print("\nShape of m4: ", m4.shape)
+print("Contents of m4:", m4)
