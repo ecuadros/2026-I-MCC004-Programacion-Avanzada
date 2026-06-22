@@ -12,12 +12,18 @@ struct RowProxy {
     size_t cols;
 
     RowProxy(T* ptr, size_t c) : row_ptr(ptr), cols(c) {}
-    T Get(size_t col){
-        if (col >= cols) throw py::index_error("Column index out of bounds");
+    inline ssize_t Check(ssize_t c){
+        if(c < 0) c += cols;
+        if(c < 0 || static_cast<size_t>(c) >= cols)
+            throw py::index_error("Column index out of bounds");
+        return c;
+    }
+    T Get(ssize_t col){
+        col = Check(col);
         return row_ptr[col];
     }
-    void Set(size_t col, T value){
-        if (col >= cols) throw py::index_error("Column index out of bounds");
+    void Set(ssize_t col, T value){
+        col = Check(col);
         row_ptr[col] =  value;
     }
 };
@@ -40,8 +46,10 @@ void declare_matrix(py::module &m, const std::string &type_name) {
         .def(py::self * py::self) // Matrix * Matrix
         .def(py::self * T())      // Matrix * Scalar (value)
 
-        .def("__getitem__", [](Matrix1<T> &self, size_t row) {  // Reading values via the first brackets
-            if (row >= self.Rows()) throw py::index_error("Row index out of bounds");
+        .def("__getitem__", [](Matrix1<T> &self, ssize_t row) {  // Reading values via the first brackets
+            if(row < 0) row += self.Rows();
+            if(row < 0 || static_cast<size_t>(row) >= self.Rows())
+                throw py::index_error("Row index out of bounds");
             return RowProxy<T>(self[row], self.Cols());
         })
 
