@@ -22,3 +22,5 @@ print("\nShape of m1:", m1.shape)
 print("Contents of m1:", m1)
 print("Value at m1[0][1]:", m1[0][1])
 print("Value at m1[-2][1]", m1[-2][-1])
+m1_cuadrado = m1.apply(lambda x: x ** 2)
+print("Elementos de m1 al cuadrado: ", m1_cuadrado);

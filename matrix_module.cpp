@@ -57,7 +57,24 @@ void declare_matrix(py::module &m, const std::string &type_name) {
             std::ostringstream oss;
             oss << self;
             return oss.str();
-        });
+        })
+        .def("apply", [](const Matrix1<T> &self, py::function func) {
+            Matrix1<T> result(self.Rows(), self.Cols());
+
+            for (size_t r = 0; r < self.Rows(); ++r) {
+                for (size_t c = 0; c < self.Cols(); ++c) {
+                    // 1. Extrae el valor de C++
+                    T value = self[r][c];
+
+                    // 2. Lo envía a la función de Python y recupera el resultado transformado
+                    py::object py_res = func(value);
+
+                    // 3. Convierte de vuelta al tipo T de C++ y lo asigna
+                    result[r][c] = py_res.cast<T>();
+                }
+            }
+            return result;
+        }, py::arg("func"), "Aplica una función de Python a cada elemento de la matriz");
 }
 
 PYBIND11_MODULE(matrix_module, m) {
