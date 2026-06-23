@@ -51,17 +51,31 @@ public:
     Matrix1(Matrix1 &&other) noexcept;                       // movimiento
     Matrix1 &operator=(const Matrix1 &other);                // asignacion copia
     Matrix1 &operator=(Matrix1 &&other) noexcept;            // asignacion movimiento
-    ~Matrix1() { Destroy(); }
+    ~Matrix1() { 
+        Destroy(); 
+    }
  
     // ---- Fabricas estaticas ----
-    static Matrix1 Zeros(size_t rows, size_t cols) { return Matrix1(rows, cols, T{}); }
-    static Matrix1 Ones (size_t rows, size_t cols) { return Matrix1(rows, cols, T{1}); }
+    static Matrix1 Zeros(size_t rows, size_t cols) { 
+        return Matrix1(rows, cols, T{}); 
+    }
+    static Matrix1 Ones (size_t rows, size_t cols) { 
+        return Matrix1(rows, cols, T{1}); 
+    }
  
     // ---- Acceso ----
-    size_t   Rows() const { return m_rows; }
-    size_t   Cols() const { return m_cols; }
-    T       *Data()       { return m_data; }   // bloque contiguo (para NumPy)
-    const T *Data() const { return m_data; }
+    size_t   Rows() const { 
+        return m_rows; 
+    }
+    size_t   Cols() const { 
+        return m_cols; 
+    }
+    T       *Data()       { 
+        return m_data; 
+    }   // bloque contiguo (para NumPy)
+    const T *Data() const { 
+        return m_data; 
+    }
  
     T       *operator[](size_t row);            // devuelve la fila -> permite m[i][j]
     const T *operator[](size_t row) const;
@@ -74,7 +88,9 @@ public:
  
     // ---- Comparacion ----
     BoolType operator==(const Matrix1 &other) const;
-    BoolType operator!=(const Matrix1 &other) const { return !(*this == other); }
+    BoolType operator!=(const Matrix1 &other) const { 
+        return !(*this == other); 
+    }
  
     // ---- Matriz-matriz ----
     Matrix1  operator+ (const Matrix1 &other) const;
@@ -168,7 +184,9 @@ Matrix1<T>::Matrix1(size_t rows, size_t cols, const T &value) : m_rows(rows), m_
  
 template <typename T>
 Matrix1<T>::Matrix1(const Matrix1 &other) : m_rows(other.m_rows), m_cols(other.m_cols) {
-    if (other.m_data == nullptr) { m_rows = m_cols = 0; return; }
+    if (other.m_data == nullptr) {
+         m_rows = m_cols = 0; return; 
+        }
     Create();
     for (size_t k = 0; k < m_rows * m_cols; ++k)
         m_data[k] = other.m_data[k];
