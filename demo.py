@@ -2,29 +2,21 @@
 from matrix_wrapper import SimpleMatrix, cargar_matriz
 
 def main():
-    print("=" * 60)
-    print("DEMO: Operaciones con matrices (C++ desde Python)")
-    print("=" * 60)
 
-    # Crear objeto que gestiona la librería C++
     m = SimpleMatrix()
 
-    # Cargar primera matriz (A) desde archivo
     print("\n1. Cargando Datamatriz1.txt como Matriz A...")
     if not m.load("Datamatriz1.txt"):
-        print("   ✗ Error: No se pudo cargar Datamatriz1.txt")
+        print("Error")
         return
-    print("   ✓ Matriz A cargada correctamente")
     print("\n--- Matriz A ---")
     print(m)
 
-    # Cargar segunda matriz (B) usando función auxiliar
     print("\n2. Cargando Datosmatriz2.txt como Matriz B...")
     resultado_b = cargar_matriz("Datosmatriz2.txt")
     if "Error" in resultado_b:
-        print(f"   ✗ {resultado_b}")
+        print(f"Error{resultado_b}")
         return
-    print("   ✓ Matriz B cargada correctamente")
     print("\n--- Matriz B ---")
     print(resultado_b)
 
