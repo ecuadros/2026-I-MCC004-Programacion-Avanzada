@@ -51,15 +51,18 @@ void DemoMatrix(){
     ifs4 >> m4;
     m4.Print(cout);
 
+    cout << "m1 = 5*m2 + m3*m4" << endl;
     Matrix1<TI> m1;
     m1 = m2*5 + m3 * m4;
     m1.Print(cout);
-
+/*
     cout << "== Probando copy constructor ===" << endl;
-    Matrix1<TI> m5=m1;
+    Matrix1<TI> m5;
+    m5 = m1;
     m5.Print(cout);
     cout << "=======" << endl;
     m1.Print(cout);
+*/
     
 
     

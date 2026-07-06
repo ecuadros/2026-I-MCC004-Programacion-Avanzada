@@ -18,8 +18,8 @@ class Matrix1 {
         size_t   m_rows = 0, m_cols = 0;
     public:
         Matrix1(size_t rows=0, size_t cols=0) : m_rows(rows), m_cols(cols) { } // constructor
-        Matrix1(Matrix1 &other); // copy constructor
-        Matrix1& operator=(Matrix1 &other);
+        Matrix1(Matrix1 &other) = delete; // copy constructor
+        //Matrix1& operator=(Matrix1 &other);
 
         Matrix1(Matrix1 &&other); // move constructor
         Matrix1& operator=(Matrix1 &&other);
@@ -49,7 +49,7 @@ void Matrix1<T>::Create()
 }
 
 // copy constructor
-
+/*
 template <typename T>
 Matrix1<T>::Matrix1(Matrix1 &other) : m_rows(other.m_rows), m_cols(other.m_cols) {
     if (m_rows > 0 && m_cols > 0) {
@@ -80,6 +80,7 @@ Matrix1<T>& Matrix1<T>::operator=(Matrix1<T> &other) {
     }
     return *this;
 }
+*/
 
 // Move constructor
 template <typename T>
