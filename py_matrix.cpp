@@ -20,7 +20,7 @@ using Mat  = Matrix1<TD>;
 using ssz  = py::ssize_t;
  
 PYBIND11_MODULE(matrix1, m) {
-    m.doc() = "Matrix1<double> expuesta a Python (pybind11)";
+    m.doc() = "Matrix1<TD> expuesta a Python (pybind11)";
  
     py::class_<Mat>(m, "Matrix1", py::buffer_protocol())
         // ---- Constructores ----
