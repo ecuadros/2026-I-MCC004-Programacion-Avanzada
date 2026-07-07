@@ -1,60 +1,67 @@
 """
 Demostracion de los tres requisitos en Python sobre el modulo matrix1.
  
-No requiere ningun cambio en el codigo C++: usa el binding que ya existe
-en py_matrix.cpp (memoryview escribible por fila, __repr__/__str__ y
-el operator* matriz-matriz).
+El modulo ahora expone DOS tipos (int y float):
+    matrix1.Matrix1Int    -> Matrix1<int>
+    matrix1.Matrix1Float  -> Matrix1<float>
+ 
+Se prueban los tres requisitos con AMBOS tipos, para demostrar que la
+plantilla funciona para int y para float.
  
 Uso:
-    python setup.py build_ext --inplace   # compila el modulo matrix1
-    python demo_python.py
+    python3 setup.py build_ext --inplace   # compila el modulo matrix1
+    python3 demo_python.py
 """
  
 import matrix1
  
  
-def main():
-    # ------------------------------------------------------------------
-    # 1) Hacer posible m[3][2] = 8
-    #    m[3] devuelve una vista (memoryview) ESCRIBIBLE de la fila 3,
-    #    apuntando a la memoria real de la matriz; [2] = 8 escribe ahi.
-    # ------------------------------------------------------------------
-    m = matrix1.Matrix1(4, 3, 0.0)   # 4 filas x 3 columnas, llena de 0
-    m[3][2] = 8                      # asignacion por doble indice
-    assert m[3, 2] == 8              # se confirma leyendo con m[i, j]
-    print("1) m[3][2] = 8  ->  m[3,2] =", m[3, 2])
+def requisitos(Matrix, nombre, uno, dos):
+    print("\n############  Tipo:", nombre, " ############")
  
     # ------------------------------------------------------------------
-    # 2) print(m)
-    #    Funciona gracias a __str__/__repr__, que reusan operator<<.
+    # 1) Hacer posible m[3][2] = v
+    #    m[3] devuelve una vista (memoryview) ESCRIBIBLE de la fila 3,
+    #    apuntando a la memoria real de la matriz; [2] = v escribe ahi.
     # ------------------------------------------------------------------
-    print("\n2) print(m):")
+    m = Matrix(4, 3)                 # 4 filas x 3 columnas, llena de 0
+    m[3][2] = dos                    # asignacion por doble indice
+    assert m[3, 2] == dos            # se confirma leyendo con m[i, j]
+    print("1) m[3][2] =", dos, " ->  m[3,2] =", m[3, 2])
+ 
+    # ------------------------------------------------------------------
+    # 2) print(m)  (usa __str__/__repr__, que reusan operator<<)
+    # ------------------------------------------------------------------
+    print("2) print(m):")
     print(m)
  
     # ------------------------------------------------------------------
     # 3) m1 = m2 * m3  (multiplicacion de matrices)
-    #    Mapeado con .def(py::self * py::self) sobre tu operator*.
-    #    m2 (2x3) * m3 (3x2) -> resultado 2x2; cada elemento = 1*2 * 3 = 6
+    #    m2 (2x3) * m3 (3x2) -> 2x2; cada elemento = 3 * uno * dos
     # ------------------------------------------------------------------
-    m2 = matrix1.Matrix1(2, 3, 1.0)  # 2x3 llena de 1
-    m3 = matrix1.Matrix1(3, 2, 2.0)  # 3x2 llena de 2
+    m2 = Matrix(2, 3, uno)           # 2x3 llena de 'uno'
+    m3 = Matrix(3, 2, dos)           # 3x2 llena de 'dos'
     m1 = m2 * m3                     # 2x2
-    print("\n3) m1 = m2 * m3:")
+    print("3) m1 = m2 * m3:")
     print(m1)
-    assert m1[0, 0] == 6.0
+    assert m1[0, 0] == 3 * uno * dos
  
     # ------------------------------------------------------------------
-    # 4) Manejo de errores: operar matrices de distinto tamano debe
-    #    lanzar excepcion (pybind11 traduce el std::invalid_argument
-    #    de C++ a un ValueError en Python).
+    # 4) Manejo de errores: dimensiones distintas -> excepcion
     # ------------------------------------------------------------------
     try:
-        matrix1.Matrix1(2, 2, 1.0) + matrix1.Matrix1(3, 3, 1.0)
+        Matrix(2, 2, uno) + Matrix(3, 3, uno)
         assert False, "deberia haber lanzado excepcion"
     except (ValueError, RuntimeError) as e:
-        print("\n4) suma con dimensiones distintas -> excepcion:", e)
+        print("4) suma con dimensiones distintas -> excepcion:", e)
+ 
+ 
+def main():
+    requisitos(matrix1.Matrix1Int,   "Matrix1Int",   1,   8)
+    requisitos(matrix1.Matrix1Float, "Matrix1Float", 1.0, 8.0)
  
  
 if __name__ == "__main__":
     main()
-    print("\nOK: los tres requisitos funcionan.")
+    print("\nOK: los tres requisitos funcionan para int y float.")
+ 

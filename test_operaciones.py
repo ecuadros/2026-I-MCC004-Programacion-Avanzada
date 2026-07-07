@@ -1,157 +1,157 @@
 """
-Pruebas de todas las operaciones del modulo matrix1.
-
-Antes de correr, compila el modulo:
+Pruebas de todas las operaciones del modulo matrix1, para AMBOS tipos.
+ 
+El modulo expone:
+    matrix1.Matrix1Int    -> Matrix1<int>
+    matrix1.Matrix1Float  -> Matrix1<float>
+ 
+La bateria completa se corre una vez por tipo. El parametro T es el tipo
+nativo de Python (int / float) que se usa para construir los valores
+esperados, de modo que las comparaciones sean del tipo correcto.
+ 
+Uso:
     python3 setup.py build_ext --inplace
-Luego:
     python3 test_operaciones.py
-
-Cada bloque imprime lo que hace y usa assert para verificar el resultado.
-Si algo falla, el assert corta la ejecucion y muestra el error.
 """
-
+ 
 import matrix1
-
-
+ 
+ 
 def titulo(texto):
     print("\n" + "=" * 60)
     print(texto)
     print("=" * 60)
-
-
-# =====================================================================
-# REQUISITO 1: hacer posible  m[3][2] = 8
-# =====================================================================
-titulo("REQUISITO 1:  m[3][2] = 8")
-
-m = matrix1.Matrix1(4, 3, 0.0)   # 4 filas x 3 columnas, llena de 0
-m[3][2] = 8                      # escritura por doble corchete (memoryview)
-assert m[3, 2] == 8              # se confirma leyendo con m[i, j]
-print("m[3][2] = 8  ->  m[3,2] =", m[3, 2])
-
-# tambien se puede escribir/leer con m[i, j]
-m[0, 0] = 5
-assert m[0, 0] == 5
-print("m[0,0] = 5  ->  m[0,0] =", m[0, 0])
-
-
-# =====================================================================
-# REQUISITO 2: print(m)
-# =====================================================================
-titulo("REQUISITO 2:  print(m)")
-
-print(m)
-
-
-# =====================================================================
-# REQUISITO 3: m1 = m2 * m3  (multiplicacion de matrices)
-# =====================================================================
-titulo("REQUISITO 3:  m1 = m2 * m3")
-
-m2 = matrix1.Matrix1(2, 3, 1.0)  # 2x3 llena de 1
-m3 = matrix1.Matrix1(3, 2, 2.0)  # 3x2 llena de 2
-m1 = m2 * m3                     # resultado 2x2, cada elemento = 1*2 * 3 = 6
-print("m2 (2x3):")
-print(m2)
-print("m3 (3x2):")
-print(m3)
-print("m1 = m2 * m3 (2x2):")
-print(m1)
-assert m1[0, 0] == 6.0
-assert m1.rows() == 2 and m1.cols() == 2
-
-
-# =====================================================================
-# OPERADORES MATRIZ-MATRIZ:  + , - , +=, -=
-# =====================================================================
-titulo("OPERADORES MATRIZ-MATRIZ:  + - += -=")
-
-a = matrix1.Matrix1(2, 2, 3.0)   # todo 3
-b = matrix1.Matrix1(2, 2, 1.0)   # todo 1
-
-suma = a + b                     # todo 4
-resta = a - b                    # todo 2
-assert suma[0, 0] == 4.0
-assert resta[0, 0] == 2.0
-print("a + b [0,0] =", suma[0, 0], " (esperado 4)")
-print("a - b [0,0] =", resta[0, 0], " (esperado 2)")
-
-a += b                           # a pasa a ser todo 4
-assert a[0, 0] == 4.0
-print("a += b -> a[0,0] =", a[0, 0], " (esperado 4)")
-
-
-# =====================================================================
-# OPERADORES MATRIZ-ESCALAR:  m + s , s * m , etc.
-# =====================================================================
-titulo("OPERADORES MATRIZ-ESCALAR")
-
-c = matrix1.Matrix1(2, 2, 2.0)   # todo 2
-mas = c + 10.0                   # todo 12
-por = c * 3.0                    # todo 6
-por_izq = 3.0 * c                # todo 6 (escalar por la izquierda)
-assert mas[0, 0] == 12.0
-assert por[0, 0] == 6.0
-assert por_izq[0, 0] == 6.0
-print("c + 10  [0,0] =", mas[0, 0], " (esperado 12)")
-print("c * 3   [0,0] =", por[0, 0], " (esperado 6)")
-print("3 * c   [0,0] =", por_izq[0, 0], " (esperado 6, escalar a la izquierda)")
-
-
-# =====================================================================
-# COMPARACION:  ==  y  !=
-# =====================================================================
-titulo("COMPARACION:  ==  !=")
-
-x = matrix1.Matrix1(2, 2, 7.0)
-y = matrix1.Matrix1(2, 2, 7.0)
-z = matrix1.Matrix1(2, 2, 9.0)
-assert (x == y) is True
-assert (x != z) is True
-print("x == y :", x == y, " (esperado True)")
-print("x != z :", x != z, " (esperado True)")
-
-
-# =====================================================================
-# MULTIPLICACION ELEMENTO A ELEMENTO (Hadamard)
-# =====================================================================
-titulo("ELEMENTO A ELEMENTO:  element_wise_multiply")
-
-p = matrix1.Matrix1(2, 2, 4.0)
-q = matrix1.Matrix1(2, 2, 5.0)
-had = p.element_wise_multiply(q)  # cada elemento = 4 * 5 = 20
-assert had[0, 0] == 20.0
-print("p .* q [0,0] =", had[0, 0], " (esperado 20)")
-
-
-# =====================================================================
-# MULTIPLICACION CONCURRENTE (std::thread) == misma que la normal
-# =====================================================================
-titulo("MULTIPLICACION CONCURRENTE:  multiply_concurrent")
-
-normal = m2 * m3                       # 2x2 lleno de 6
-conc = m2.multiply_concurrent(m3)      # nthreads=0 usa los nucleos disponibles
-assert normal == conc                  # deben dar el mismo resultado
-print("m2 * m3 (normal) == m2.multiply_concurrent(m3) :", normal == conc)
-
-
-# =====================================================================
-# MANEJO DE ERRORES: dimensiones incompatibles -> excepcion
-# =====================================================================
-titulo("MANEJO DE ERRORES")
-
-try:
-    matrix1.Matrix1(2, 2, 1.0) + matrix1.Matrix1(3, 3, 1.0)
-    assert False, "deberia haber lanzado excepcion"
-except (ValueError, RuntimeError) as e:
-    print("suma 2x2 + 3x3 -> excepcion:", e)
-
-try:
-    matrix1.Matrix1(2, 3, 1.0) * matrix1.Matrix1(2, 2, 1.0)
-    assert False, "deberia haber lanzado excepcion"
-except (ValueError, RuntimeError) as e:
-    print("mult 2x3 * 2x2 -> excepcion:", e)
-
-
-# =====================================================================
-titulo("OK: todas las operaciones funcionan")
+ 
+ 
+def suite(Matrix, nombre, T):
+    titulo("TIPO: " + nombre)
+ 
+    # --- REQUISITO 1: m[3][2] = 8 ---
+    m = Matrix(4, 3)
+    m[3][2] = T(8)
+    assert m[3, 2] == T(8)
+    m[0, 0] = T(5)
+    assert m[0, 0] == T(5)
+    print("m[3][2] = 8  ->  m[3,2] =", m[3, 2])
+ 
+    # --- REQUISITO 2: print(m) ---
+    print("print(m):")
+    print(m)
+ 
+    # --- REQUISITO 3: m1 = m2 * m3 ---
+    m2 = Matrix(2, 3, T(1))
+    m3 = Matrix(3, 2, T(2))
+    m1 = m2 * m3                     # cada elemento = 3 * 1 * 2 = 6
+    print("m1 = m2 * m3:")
+    print(m1)
+    assert m1[0, 0] == T(6)
+    assert m1.rows() == 2 and m1.cols() == 2
+ 
+    # --- OPERADORES MATRIZ-MATRIZ: + - += ---
+    a = Matrix(2, 2, T(3))
+    b = Matrix(2, 2, T(1))
+    assert (a + b)[0, 0] == T(4)
+    assert (a - b)[0, 0] == T(2)
+    a += b
+    assert a[0, 0] == T(4)
+    print("+ - +=  OK")
+ 
+    # --- OPERADORES MATRIZ-ESCALAR (incluye escalar por la izquierda) ---
+    c = Matrix(2, 2, T(2))
+    assert (c + T(10))[0, 0] == T(12)
+    assert (c * T(3))[0, 0] == T(6)
+    assert (T(3) * c)[0, 0] == T(6)
+    print("m+s, m*s, s*m  OK")
+ 
+    # --- COMPARACION == != ---
+    x = Matrix(2, 2, T(7))
+    y = Matrix(2, 2, T(7))
+    z = Matrix(2, 2, T(9))
+    assert (x == y) is True
+    assert (x != z) is True
+    print("== !=  OK")
+ 
+    # --- ELEMENTO A ELEMENTO ---
+    p = Matrix(2, 2, T(4))
+    q = Matrix(2, 2, T(5))
+    assert p.element_wise_multiply(q)[0, 0] == T(20)
+    print("element_wise_multiply  OK")
+ 
+    # --- MULTIPLICACION CONCURRENTE (== a la normal) ---
+    assert (m2 * m3) == m2.multiply_concurrent(m3)
+    print("multiply_concurrent  OK")
+ 
+    # --- EXTRAS: identity / transpose / trace ---
+    I = Matrix.identity(3)
+    assert I[0, 0] == T(1) and I[0, 1] == T(0)
+    t = Matrix(2, 3)
+    t[0, 0] = T(1); t[0, 1] = T(2); t[0, 2] = T(3)
+    t[1, 0] = T(4); t[1, 1] = T(5); t[1, 2] = T(6)
+    tt = t.transpose()
+    assert tt.rows() == 3 and tt.cols() == 2
+    assert tt[0, 1] == T(4)            # el (1,0) original pasa a (0,1)
+    assert I.trace() == T(3)
+    print("identity / transpose / trace  OK")
+ 
+    # --- MANEJO DE ERRORES ---
+    try:
+        Matrix(2, 2, T(1)) + Matrix(3, 3, T(1))
+        assert False, "deberia haber lanzado excepcion"
+    except (ValueError, RuntimeError) as e:
+        print("suma 2x2 + 3x3 -> excepcion:", e)
+    try:
+        Matrix(2, 3, T(1)) * Matrix(2, 2, T(1))
+        assert False, "deberia haber lanzado excepcion"
+    except (ValueError, RuntimeError) as e:
+        print("mult 2x3 * 2x2 -> excepcion:", e)
+ 
+    print(">>> TODO OK para", nombre)
+ 
+ 
+def suite_float_decimales():
+    """Prueba especifica: Matrix1Float debe conservar valores con decimales."""
+    titulo("Matrix1Float: datos con DECIMALES")
+ 
+    m = matrix1.Matrix1Float(2, 2)
+    m[0, 0] = 1.5
+    m[0, 1] = 2.25
+    m[1, 0] = 3.75
+    m[1, 1] = 0.5
+    print("m con decimales:")
+    print(m)
+ 
+    # 1.5, 2.25, 3.75 y 0.5 son exactos en float (potencias de 2),
+    # asi que se pueden comparar con igualdad estricta.
+    assert m[0, 0] == 1.5
+    assert m[0, 1] == 2.25
+    assert m[1, 0] == 3.75
+    assert m[1, 1] == 0.5
+    print("lectura de decimales  OK")
+ 
+    # Escalar por decimal: cada valor se duplica.
+    doble = m * 2.0
+    assert doble[0, 0] == 3.0
+    assert doble[0, 1] == 4.5
+    assert doble[1, 0] == 7.5
+    assert doble[1, 1] == 1.0
+    print("m * 2.0 (decimales) [0,1] =", doble[0, 1], " (esperado 4.5)")
+ 
+    # Suma de dos matrices con decimales.
+    a = matrix1.Matrix1Float(2, 2, 0.25)
+    b = matrix1.Matrix1Float(2, 2, 0.75)
+    suma = a + b
+    assert suma[0, 0] == 1.0
+    print("0.25 + 0.75 =", suma[0, 0], " (esperado 1.0)")
+ 
+    print(">>> TODO OK para decimales en Matrix1Float")
+ 
+ 
+def main():
+    suite(matrix1.Matrix1Int,   "Matrix1Int",   int)
+    suite(matrix1.Matrix1Float, "Matrix1Float", float)
+    suite_float_decimales()
+    titulo("OK: todas las operaciones funcionan para int y float")
+ 
+ 
+if __name__ == "__main__":
+    main()
