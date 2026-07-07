@@ -1,11 +1,13 @@
 #include <iostream> // cout, cin, endl
 #include <fstream>  // ofstream
+#include <sstream>  // stringstream
 #include "Pointers.h"
 #include "util.h"
 #include "array1.h"
 #include "array2.h"
 #include "array3.h"
 #include "array4.h"
+#include "matrix1.h"
 
 using namespace std;
 
@@ -226,5 +228,77 @@ void DemoPointersVector5(){
     ofs << array5 ;
 }
 
+void DemoPointersMatrix1_1(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+    cout << "Ingrese el tamaño de la matriz:" << endl;
+    Matrix1<TI> matrix;
+    matrix.Read(cin);
+    matrix.Print(cout);
+}
+
+void DemoPointersMatrix1_2(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+    cout << "Ingrese el tamaño de la matriz:" << endl;
+    Matrix1<TI> matrix;
+    matrix.Read(cin);
+    cout << "Imprimiendo en el cout\n";
+    matrix.Print(cout);
+    cout << "Aplicando Square\n";
+    matrix.ApplyFunctionToAll(Square<TI>);
+    cout << "Imprimiendo en el cout\n";
+    matrix.Print(cout);
+}
+
 void DemoPointersMatrix1(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+
+    Matrix1<TI> matrix;
+    cout << "Ingrese el tamaño de la matriz, y luego sus elementos:" << endl;
+    cin >> matrix;
+    cout << "Imprimiendo en el cout\n";
+    cout << matrix << endl;
+
+    cout << "Aplicando Square\n";
+    matrix.ApplyFunctionToAll(Square<TI>);
+    cout << "Imprimiendo en el cout\n";
+    cout << matrix << endl;
+}
+
+void DemoPointersMatrix2(){
+    cout << "Demo Matrix1 Nivel #5" << endl;
+
+    //Matrix1<TI> m1;
+    Matrix1<TI> m2;
+    Matrix1<TI> m3;
+    Matrix1<TI> m4;
+
+    stringstream ss;
+    ss << "2 2\n1 2\n3 4\n";
+    ss >> m2;
+    ss.str("");
+    ss << "2 2\n5 6\n7 8\n";
+    ss >> m3;
+    ss.str("");
+    ss << "2 2\n9 10\n11 12\n";
+    ss >> m4;
+
+    cout << "m2:\n" << m2;
+    cout << "\nm3:\n" << m3;
+    cout << "\nm4:\n" << m4;
+    cout << endl;
+
+    cout << "operación: m1=5*m2+m3*m4\n";
+    //Matrix1<TI> m1 = m2;    // Falla porque el move constructor require un rvalue, m2 es un lvalue
+    //Matrix1<TI> m1 = m2 + m3;
+    //Matrix1<TI> m1 = m3 * m4;
+    //Matrix1<TI> m1=m2*5+m3*m4;
+    Matrix1<TI> m1=5*m2+m3*m4;
+    cout << m1 << endl;
+
+    cout << "acceso a elemento: m1[0][1]\n";
+    cout << m1[0][1] << endl;
+
+    cout <<  "modificación de elemento: m1[0][1] = 99\n";
+    m1[0][1] = 99;
+    cout << m1[0][1] << endl;
 }
