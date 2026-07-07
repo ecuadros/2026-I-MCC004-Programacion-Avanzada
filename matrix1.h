@@ -20,6 +20,7 @@ class Matrix1 {
         Matrix1(size_t rows=0, size_t cols=0) : m_rows(rows), m_cols(cols) { } // constructor
         Matrix1(Matrix1 &other) = delete; // copy constructor
         //Matrix1& operator=(Matrix1 &other);
+        
 
         Matrix1(Matrix1 &&other); // move constructor
         Matrix1& operator=(Matrix1 &&other);
@@ -36,6 +37,9 @@ class Matrix1 {
         Matrix1 operator+(const Matrix1 &other) const;
         Matrix1 operator-(const Matrix1 &other) const;
         Matrix1 operator*(T value) const;
+        T* operator[](size_t i) {return m_pMat[i];} // operador m[i][j]
+        T& operator()(size_t i, size_t j) {return m_pMat[i][j];} // operador operador m[i,j]
+
         
 
 };
