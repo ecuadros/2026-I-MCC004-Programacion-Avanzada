@@ -12,6 +12,8 @@ using T1  = int32_t;
 using T5 = double;
 using T16 = double;
 
+using B1 = double;
+
 using U1  = uint32_t;
 
 using T_ABS = double;

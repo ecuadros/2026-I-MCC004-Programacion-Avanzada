@@ -252,47 +252,56 @@ cout <<"\n"<< Matrix1;
 void DemoPointersMatrix2(){
     cout << "=== Cargando Matrices ===\n";
     
-    Matrix1<TI> matrix1;
+    Matrix1<T5> matrix1;
     ifstream ifs1("Datamatriz1.txt");
     matrix1.Read(ifs1);
     ifs1.close();
 
-    Matrix1<TI> matrix2;
+    Matrix1<T5> matrix2;
     ifstream ifs2("Datosmatriz2.txt");
     matrix2.Read(ifs2);
     ifs2.close();
 
-    cout << "\nMatrices Originales\n";
     cout << "Matrix1:\n";
     cout << matrix1;
     
     cout << "\nMatrix2:\n";
     cout << matrix2;
 
-
-    Matrix1<TI> suma = matrix1 + matrix2;
+    Matrix1<T5> suma = matrix1 + matrix2;
     cout << "suma:\n";
     cout << suma;
 
  
-    Matrix1<TI> resta = matrix1 - matrix2;
+    Matrix1<T5> resta = matrix1 - matrix2;
     cout << "resta:\n";
     cout << resta;
 
     cout << endl;
 
     // Operador * 
-Matrix1<TI> escalar = matrix1 * 2;
-cout << "matrix1* 2:\n";
-cout << escalar;
+    Matrix1<T5> escalar = matrix1 * 2;
+    cout << "matrix1* 2:\n";
+    cout << escalar;
 
-// Operador X
-Matrix1<TI> producto = matrix1.operatorX(matrix2);
-cout << "matrix1 X matrix2:\n";
-cout << producto;
+    // Operador *
+    Matrix1<T5> producto = matrix1*matrix2;
+    cout << "matrix1 * matrix2:\n";
+    cout << producto;
 
-Matrix1<TI> m1 = (matrix1 * 5) +producto;
-cout << "Resultado de m1 = 5*m1 + m1*m2:\n" << m1 << endl;
+    Matrix1<T5> m1 = (matrix1 * 5) +producto;
+    cout << "Resultado de m1 = 5*m1 + m1*m2:\n" << m1 << endl;
+
+
+    Matrix1<T5> matrix3;
+    ifstream ifs3("Datosmatriz3.txt");
+    matrix3.Read(ifs3);
+    ifs3.close();
+
+    cout << "\nMatrix3:\n";
+    cout << matrix3;
+    matrix3(2,1) = 8;
+    cout << "Matriz después de mat[3][2] = 8:\n" << matrix3;
 
 
 }
