@@ -1,11 +1,12 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/operators.h>
+#include <pybind11/stl.h>
 #include <sstream>
 #include "matrix1.h"
 
 namespace py = pybind11;
 
-// 1. Estructura Proxy para soportar la sintaxis m[i][j] en Python
+// Estructura Proxy para soportar la sintaxis m[i][j] en Python
 template <typename T>
 struct RowProxy {
     T* row_ptr;
@@ -13,7 +14,7 @@ struct RowProxy {
     void setitem(size_t c, T val) { row_ptr[c] = val; }
 };
 
-// 2. Función auxiliar para redirigir tu método Print() a un string para Python
+// Función auxiliar para redirigir tu método Print() a un string para Python
 template <typename T>
 std::string MatrixToString(Matrix1<T>& m) {
     std::stringstream ss;
@@ -36,6 +37,11 @@ PYBIND11_MODULE(matrix_lib, m) { // matrix_lib : Nombre de la libreria, m : libr
         .def("create", &Matrix1<int>::Create)
         .def("destroy", &Matrix1<int>::Destroy)
         
+        // llamando a las 3 extras implementadas
+        .def("diag", &Matrix1<int>::Diag)
+        .def("transpose", &Matrix1<int>::Transpose)
+        .def("det", &Matrix1<int>::Det)
+        
         // Exponemos las operaciones matemáticas que definiste
         .def(py::self + py::self)
         .def(py::self - py::self)
@@ -57,4 +63,5 @@ PYBIND11_MODULE(matrix_lib, m) { // matrix_lib : Nombre de la libreria, m : libr
         .def("__setitem__", [](Matrix1<int> &instance, std::pair<size_t, size_t> idx, int val) {
             instance(idx.first, idx.second) = val;
         });
+        
 }

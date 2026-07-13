@@ -4,6 +4,9 @@
 #include <iostream>
 #include <utility>
 #include <cassert>
+#include <vector>
+#include <algorithm>
+
 #include "types.h"
 
 using namespace std;
@@ -39,6 +42,14 @@ class Matrix1 {
         Matrix1 operator*(T value) const;
         T* operator[](size_t i) {return m_pMat[i];} // operador m[i][j]
         T& operator()(size_t i, size_t j) {return m_pMat[i][j];} // operador operador m[i,j]
+        
+        // Extra 1 : Agregando la funcion diagonal de la matriz, para una matriz cuadrada
+        vector<T> Diag() const;
+        // Extra 2 : Agregando metodo de transpuesta
+        Matrix1 Transpose() const;
+        // Extra 3 : Agregando la funcion de determinante de matriz
+        Matrix1 SubMatrix(size_t exclude_row, size_t exclude_col) const;
+        T Det() const;
 
         
 
@@ -203,6 +214,65 @@ Matrix1<T> Matrix1<T>::operator*(const Matrix1 &other) const {
 };
 
 
+// implementando metodo Diag()
+template <typename T>
+vector<T> Matrix1<T>::Diag() const{
+	vector<T> diagonal;
+	if (m_rows != m_cols) {throw runtime_error("No se puede efectuar este operador sobre una matriz no cuadrada");}
+	for (size_t i = 0; i < m_rows; ++i) {
+		diagonal.push_back(m_pMat[i][i]);
+	}
+	return diagonal;
+};
+
+
+// implementando metodo Transpose()
+template <typename T>
+Matrix1<T> Matrix1<T>::Transpose() const{
+	Matrix1<T> result(m_cols, m_rows);
+	result.Create();
+	for (size_t i = 0; i < m_rows; ++i){
+		for (size_t j = 0; j < m_cols; ++j){
+			result.m_pMat[j][i] = m_pMat[i][j];
+		}
+	}
+	return result;
+};
+
+// implementacion del metodo Det()
+template <typename T>
+Matrix1<T> Matrix1<T>::SubMatrix(size_t exclude_row, size_t exclude_col) const {
+	Matrix1<T> sub(m_rows - 1, m_cols -1);
+	sub.Create();
+	
+	size_t r = 0; // indice de fila para la submatriz
+	for (size_t i = 0; i < m_rows; ++i){
+		if (i == exclude_row) continue;
+		size_t c = 0; // indice de columna para submatriz
+		for (size_t j = 0; j < m_cols; ++j){
+			if (j == exclude_col) continue;
+			sub.m_pMat[r][c] = m_pMat[i][j];
+			c++;
+		} 
+	}
+	
+	return sub;
+};
+
+template <typename T>
+T Matrix1<T>::Det() const{
+	if (m_rows == 0 || m_cols == 0) {throw runtime_error("La matriz esta vacia");}
+	if (m_rows != m_cols) {throw runtime_error("CUIDADO : La matriz debe ser cuadrada");}
+	if (m_rows == 1) {return m_pMat[0][0];} // caso especial : matriz 1x1
+	T det = 0;
+	T sign = 1;
+	for (size_t c = 0; c < m_cols; ++c){
+		Matrix1<T> sub = SubMatrix(0, c);
+		det = det + (sign * m_pMat[0][c] * sub.Det());
+		sign = -sign;
+	}
+	return det;
+};
 
 
 

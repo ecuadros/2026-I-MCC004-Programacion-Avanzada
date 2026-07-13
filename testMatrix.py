@@ -35,6 +35,23 @@ print(m3)
 print("Matriz M4 : (M1 * M2):")
 print(m4)
 
+print("==== NUEVOS MÉTODOS ====")
+print(m1)
+# Extra 1: Diagonal
+print("Diagonal de M1:")
+diagonal_m1 = m1.diag()
+print(diagonal_m1)
+
+# Extra 2: Transpuesta
+print("\nTranspuesta de M1:")
+transpuesta_m1 = m1.transpose()
+print(transpuesta_m1)
+
+# Extra 3: Determinante
+print("\nDeterminantes:")
+print(f"Determinante de M1: {m1.det()}") # Debería ser: (5*1) - (2*3) = -1
+
+
 # Liberar memoria manualmente si lo deseas, o dejar que el destructor lo haga
 m1.destroy()
 m2.destroy()

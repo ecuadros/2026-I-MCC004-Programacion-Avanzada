@@ -1,5 +1,6 @@
 #include <fstream>
 
+
 #include "matrix1.h"
 
 template <typename T>
@@ -74,7 +75,25 @@ void DemoMatrix(){
     cout << "Modificando valores" << endl;
     m1[1][1] = 4;
     m1.Print(cout);
-
+    
+    cout << "========================" << endl;
+    cout << "Probando metodo diagonal" << endl;
+    vector<TI> diagonal = m1.Diag();
+    cout << "[ ";
+    for (size_t i = 0; i < diagonal.size(); ++i) {
+        cout << diagonal[i] << " ";
+    }
+    cout << "]" << endl;
+    
+    cout << "========================" << endl;
+    cout << "Probando transpuesta de matriz" << endl;
+    Matrix1<TI> transpuesta = m1.Transpose();
+    transpuesta.Print(cout);
+    
+    cout << "========================" << endl;
+    cout << "Probando el determinante de una matriz" << endl;
+    TI determinante = m1.Det();
+    cout << "Determinante : " << determinante << endl;
     
     
     
