@@ -1,0 +1,3 @@
+/Users/susanasuarezmaciel/Documents/MAESTRIA UNI/1 CICLO/PROGRAMACION AVANZADA/2026-I-MCC004-Programacion-Avanzada/build-vtk/CMakeFiles/vtkDemo.dir
+/Users/susanasuarezmaciel/Documents/MAESTRIA UNI/1 CICLO/PROGRAMACION AVANZADA/2026-I-MCC004-Programacion-Avanzada/build-vtk/CMakeFiles/edit_cache.dir
+/Users/susanasuarezmaciel/Documents/MAESTRIA UNI/1 CICLO/PROGRAMACION AVANZADA/2026-I-MCC004-Programacion-Avanzada/build-vtk/CMakeFiles/rebuild_cache.dir
