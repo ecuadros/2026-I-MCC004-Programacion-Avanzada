@@ -7,9 +7,12 @@
 #include "polimorfismo.h"
 #include "Pointers.h"
 #include "BitSigno.h"
+#include "Proyecto_vtk/proyecto.h"
 
 using namespace std;
-
+/**
+ * @brief Punto de entrada del programa.
+ */
 // Ernesto Cuadros-Vargas
 // g++ -std=c++2b main.cpp util.cpp -o main
 int main() {
@@ -24,6 +27,7 @@ int main() {
     //DemoPointersVector4();
     //DemoPointersVector5();
     //DemoPointersMatrix1();
-    DemoPointersMatrix2();
+    //DemoPointersMatrix2();
+    runRadiotherapy();
     return 0;
 }
