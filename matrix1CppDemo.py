@@ -1,4 +1,4 @@
-from matrix1_cpp import Matrix
+from matrix1_cpp import Matrix, MatrixFloat
 
 
 ## @file matrix1CppDemo.py
@@ -100,12 +100,41 @@ def demo_extras():
     print(m.trace())
 
 
+## @brief Demuestra expresiones regulares desde el binding C++.
+##
+## from_text recibe una cadena, extrae los numeros con std::regex en C++ y
+## construye una Matrix1. Las filas se separan con punto y coma.
+def demo_regex():
+    print("\nExtra expresiones regulares: Matrix.from_text")
+    m_int = Matrix.from_text("1 2 3; 4 5 6")
+    print(m_int)
+
+    print("Extra expresiones regulares con float: MatrixFloat.from_text")
+    m_float = MatrixFloat.from_text("1.5 2.5; 3.25 4.75")
+    print(m_float)
+
+
+## @brief Demuestra multiplicacion de matrices usando threads en C++.
+##
+## multiply_threaded calcula cada celda del resultado con una tarea concurrente
+## y devuelve una nueva matriz.
+def demo_threads():
+    print("\nExtra threads: m1 = m2.multiply_threaded(m3)")
+    m2 = Matrix.from_text("1 2 3; 4 5 6")
+    m3 = Matrix.from_text("1 2; 3 4; 5 6")
+
+    m1 = m2.multiply_threaded(m3)
+    print(m1)
+
+
 ## @brief Ejecuta todos los demos del archivo.
 def main():
     demo_indexing()
     demo_matrix_multiplication()
     demo_cpp_expression()
     demo_extras()
+    demo_regex()
+    demo_threads()
 
 
 if __name__ == "__main__":
