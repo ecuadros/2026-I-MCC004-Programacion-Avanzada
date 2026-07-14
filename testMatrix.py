@@ -52,9 +52,23 @@ print("\nDeterminantes:")
 print(f"Determinante de M1: {m1.det()}") # Debería ser: (5*1) - (2*3) = -1
 
 
+print("===============================")
+print("Probando matriz de float")
+m5 = matrix_lib.MatrixFloat(2, 2)
+m5.create()
+
+# 2. Sintaxis encadenada m[i][j] (usando tu operator[])
+m5[0][0] = 5.2
+m5[0][1] = .1
+m5[1][0] = 3.5
+m5[1][1] = 1.8
+
+print(m5)
+
 # Liberar memoria manualmente si lo deseas, o dejar que el destructor lo haga
 m1.destroy()
 m2.destroy()
 m3.destroy()
 m4.destroy()
+m5.destroy()
 

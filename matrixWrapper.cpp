@@ -2,6 +2,7 @@
 #include <pybind11/operators.h>
 #include <pybind11/stl.h>
 #include <sstream>
+#include <string>
 #include "matrix1.h"
 
 namespace py = pybind11;
@@ -22,46 +23,52 @@ std::string MatrixToString(Matrix1<T>& m) {
     return ss.str();
 }
 
+// Implementando de manera generica...
+template <typename T>
+void declare_matrix(py::module &m, const std::string &typestr) {
+	std::string pyclass_name = "Matrix" + typestr; // Para usar MatrixInt, MatrixFloat
+	std::string proxy_name = "_RowProxy" + typestr; 
+	
+	py::class_<RowProxy<T>>(m, proxy_name.c_str())
+		.def("__getitem__", &RowProxy<T>::getitem)
+		.def("__setitem__", &RowProxy<T>::setitem);
+		
+	py::class_<Matrix1<T>>(m, pyclass_name.c_str())
+		.def(py::init<size_t, size_t>())
+		.def("create", &Matrix1<T>::Create)
+		.def("destroy", &Matrix1<T>::Destroy)
+		.def("diag", &Matrix1<T>::Diag)
+		.def("transpose", &Matrix1<T>::Transpose)
+		.def("det", &Matrix1<T>::Det)
+		
+		.def(py::self + py::self)
+		.def(py::self - py::self)
+		.def(py::self * py::self)
+		.def(py::self * T())
+		
+		.def("__str__", &MatrixToString<T>)
+		
+		.def("__getitem__", [](Matrix1<T> &instance, size_t r){
+			return RowProxy<T> {instance[r]};
+		})
+		
+		.def("__getitem__", [](Matrix1<T> &instance, std::pair<size_t, size_t> idx){
+			return instance(idx.first, idx.second);
+		})
+		
+		.def("__setitem__", [](Matrix1<T> &instance, std::pair<size_t, size_t> idx, T val) {
+            instance(idx.first, idx.second) = val;
+        });
+}
+
+
+
 //----- Modulo principal -> pybind11
 PYBIND11_MODULE(matrix_lib, m) { // matrix_lib : Nombre de la libreria, m : libreria de c++
     m.doc() = "Librería de matrices en C++ expuesta a Python";
 
-    // Registramos la clase auxiliar ... ojo : por ahora enfocado a tipos int
-    py::class_<RowProxy<int>>(m, "_RowProxyInt")
-        .def("__getitem__", &RowProxy<int>::getitem)
-        .def("__setitem__", &RowProxy<int>::setitem);
-
-    // Registramos clase para tipos int
-    py::class_<Matrix1<int>>(m, "MatrixInt")
-        .def(py::init<size_t, size_t>())
-        .def("create", &Matrix1<int>::Create)
-        .def("destroy", &Matrix1<int>::Destroy)
-        
-        // llamando a las 3 extras implementadas
-        .def("diag", &Matrix1<int>::Diag)
-        .def("transpose", &Matrix1<int>::Transpose)
-        .def("det", &Matrix1<int>::Det)
-        
-        // Exponemos las operaciones matemáticas que definiste
-        .def(py::self + py::self)
-        .def(py::self - py::self)
-        .def(py::self * py::self)
-        .def(py::self * int())
-        
-        // Hacemos que print(matriz) en Python muestre la matriz
-        .def("__str__", &MatrixToString<int>)
-
-        // SOPORTE PARA SINTAXIS m[i][j] (Devuelve el Proxy)
-        .def("__getitem__", [](Matrix1<int> &instance, size_t r) {
-            return RowProxy<int>{ instance[r] }; 
-        })
-        
-        // SOPORTE PARA SINTAXIS m[i, j] (Llama directamente a tu operator())
-        .def("__getitem__", [](Matrix1<int> &instance, std::pair<size_t, size_t> idx) {
-            return instance(idx.first, idx.second);
-        })
-        .def("__setitem__", [](Matrix1<int> &instance, std::pair<size_t, size_t> idx, int val) {
-            instance(idx.first, idx.second) = val;
-        });
+    declare_matrix<int>(m, "Int");
+    declare_matrix<float>(m, "Float");
+    declare_matrix<double>(m, "Double");
         
 }

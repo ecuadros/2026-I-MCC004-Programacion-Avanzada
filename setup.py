@@ -4,7 +4,7 @@ from pybind11.setup_helpers import Pybind11Extension, build_ext
 ext_modules = [
     Pybind11Extension(
         "matrix_lib",           # Nombre que tendrá el módulo en Python import matrix_lib
-        ["matrixWrapper.cpp"], # Tu archivo C++ que acabamos de crear
+        ["matrixWrapper.cpp"], # Archivo C++ que acabamos de crear
         cxx_std=14              # Estándar C++14 para soportar std::exchange
     ),
 ]
