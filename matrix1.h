@@ -149,6 +149,12 @@ class Matrix1 {
          */
         const T& operator()(size_t row, size_t col) const;
         /** @brief Libera la memoria y reinicia las dimensiones a 0. */
+
+
+        T* operator[](size_t row);
+        const T* operator[](size_t row) const;
+
+
         void Destroy();
 };
 
@@ -386,6 +392,16 @@ T Matrix1<T>::operatorDet() const {
     return det;
 }
 
+template <typename T>
+T* Matrix1<T>::operator[](size_t row) {
+    assert(row < m_rows);
+    return m_pMat[row];
+}
 
+template <typename T>
+const T* Matrix1<T>::operator[](size_t row) const {
+    assert(row < m_rows);
+    return m_pMat[row];
+}
 
 #endif // __MATRIX_H__

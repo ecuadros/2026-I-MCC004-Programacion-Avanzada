@@ -305,5 +305,40 @@ void DemoPointersMatrix2(){
 
 
 }
+void DemoPointersMatrix3() {
+    cout << "\n=== Demostración del operador [][] ===\n";
 
+    // Crear una matriz de enteros 3x4
+    Matrix1<int> m(3, 4);
+
+    // Inicializar con algunos valores
+    for (size_t i = 0; i < m.getRows(); ++i)
+        for (size_t j = 0; j < m.getCols(); ++j)
+            m(i, j) = static_cast<int>(i * m.getCols() + j + 1); // 1..12
+
+    cout << "Matriz inicial (usando operator()):\n" << m;
+
+    // Usar [][] para modificar un elemento
+    m[0][0] = 99;
+    m[1][2] = 77;
+    cout << "Después de m[0][0] = 99 y m[1][2] = 77:\n" << m;
+
+    // Leer con [][]
+    int valor = m[2][3];
+    cout << "Valor en m[2][3] = " << valor << endl;
+
+    // Versión const (solo lectura)
+    const Matrix1<int>& cm = m;
+    int otro = cm[1][1];
+    cout << "Valor en cm[1][1] = " << otro << endl;
+
+    // Esto daría error de compilación (descomentar para probar):
+    // cm[0][0] = 5; // error: assignment of read-only location
+
+    // También funciona con otros tipos (float, double, etc.)
+    Matrix1<float> mf(2, 2);
+    mf[0][0] = 3.14f;
+    mf[1][1] = 2.71f;
+    cout << "\nMatriz float con [][]:\n" << mf;
+}
 

@@ -23,5 +23,6 @@ En Python:
 - [x] m = 3*m2 = m2*3
 - [x] m = det(m2)
 - [x] Doc en Doxygen
+- [x] VTK
 
 

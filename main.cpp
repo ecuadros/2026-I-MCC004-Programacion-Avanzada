@@ -7,7 +7,7 @@
 #include "polimorfismo.h"
 #include "Pointers.h"
 #include "BitSigno.h"
-#include "Proyecto_vtk/proyecto.h"
+//#include "Proyecto_vtk/proyecto.h"
 
 using namespace std;
 /**
@@ -28,6 +28,9 @@ int main() {
     //DemoPointersVector5();
     //DemoPointersMatrix1();
     //DemoPointersMatrix2();
-    runRadiotherapy();
+    //runRadiotherapy();
+    //DemoPointersMatrix3();
+    re
+
     return 0;
 }
