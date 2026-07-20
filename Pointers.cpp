@@ -39,12 +39,28 @@ void f3(const TI &ri) {}
 // nunca pasa realmente pero se puede sobreescribir
 // porque el puntero lo está apuntando
 // y puedo acceder a él con *pi
+/**
+ * @brief Paso de puntero por valor: modifica el contenido pero no el puntero.
+ *
+ * El ++*pi si afecta a la variable original porque el puntero la apunta,
+ * pero el pi = nullptr solo cambia la copia local del puntero.
+ *
+ * @param pi Puntero al entero a incrementar. La copia local se anula al final.
+ */
 void f4(TI *pi)  { ++*pi;  pi = nullptr; }
 
 // C++98, C++11...
 // Esto si es un paso de puntero por referencia
 // Se puede sobreescribir el puntero
 // rpi es una referencia
+/**
+ * @brief Paso de puntero por referencia: modifica el contenido y el puntero.
+ *
+ * A diferencia de f4, aqui rpi es una referencia al puntero original,
+ * asi que el rpi = nullptr si anula el puntero del que llama.
+ *
+ * @param rpi Referencia al puntero. Se incrementa *rpi y luego se anula rpi.
+ */
 void f5(TI *&rpi) { ++*rpi;    rpi = nullptr; }
 
 void f6(TI **ppi)  { ++**ppi;  ppi  = nullptr; }

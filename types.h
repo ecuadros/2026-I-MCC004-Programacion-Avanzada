@@ -27,6 +27,7 @@ using Area     = double;
 
 using TI = int;
 using TP = int;
+using BoolType = bool;
 
 #endif // __TYPES_H__
 

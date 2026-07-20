@@ -1,0 +1,24 @@
+# CMake para el demo de VTK
+# Uso:
+#   cp CMakeLists_vtk.txt CMakeLists.txt   (o usar cmake con un directorio aparte)
+#   mkdir build_vtk && cd build_vtk
+#   cmake ..
+#   make
+#   ./vtk_demo
+
+cmake_minimum_required(VERSION 3.16)
+project(vtk_demo)
+
+find_package(VTK REQUIRED COMPONENTS
+  CommonCore
+  FiltersSources
+  RenderingCore
+  RenderingOpenGL2
+  InteractionStyle
+  IOImage
+)
+
+add_executable(vtk_demo vtk_demo.cpp)
+target_link_libraries(vtk_demo PRIVATE ${VTK_LIBRARIES})
+
+vtk_module_autoinit(TARGETS vtk_demo MODULES ${VTK_LIBRARIES})

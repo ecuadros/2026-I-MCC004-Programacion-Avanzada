@@ -1,0 +1,12 @@
+PROJECT_NAME           = "MCC004 - Tema 15"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = matrix1.h matrix_demos.h matrix_demos.cpp Pointers.cpp vtk_demo.cpp cuda_demo.cu
+FILE_PATTERNS          = *.h *.cpp *.cu
+EXTENSION_MAPPING      = cu=C++
+EXTRACT_ALL            = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+OUTPUT_LANGUAGE        = Spanish
+SOURCE_BROWSER         = YES
+HAVE_DOT               = NO
+QUIET                  = YES

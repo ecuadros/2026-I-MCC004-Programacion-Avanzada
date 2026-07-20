@@ -42,3 +42,9 @@
 
 main
 *.txt
+docs/
+build_vtk/
+cono.png
+docs/
+build_vtk/
+cono.png
