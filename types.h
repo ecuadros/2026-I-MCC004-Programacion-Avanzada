@@ -1,32 +1,24 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
-#include <cstdint>
 
-// 3 Castro Chaupis, Armando Cristhian <armandocristhiancastrochaupis@gmail.com>,
-using T3F = float;
+#include <string>
+using namespace std;
 
-// 8 Carlos Enrique Gallo Lugo
-using T8 = int;
+// C style
+// typedef int T;
 
-using T1  = int32_t;
-using T5 = double;
-using T16 = double;
-
-using U1  = uint32_t;
-
-using T_ABS = double;
-using T12 = double;
-using T14 = double;
-using F14 = double;
-
-using RealType = double;
-using ImagType = double;
-
-using Distance = double;
-using Area     = double;
-
+// C++11 style
 using TI = int;
-using TP = int;
+using TD = double;
+using TS = string;
+
+// XT must be 32bit integer in Windows and 64bit in Linux
+#if defined(_WIN32) || defined(_WIN64)
+    using XT = int;
+#else
+    using XT = long;
+#endif
+
+using Ref = long;
 
 #endif // __TYPES_H__
-
