@@ -1,0 +1,27 @@
+\doxysection{triangle.\+h}
+\hypertarget{triangle_8h_source}{}\label{triangle_8h_source}\index{shapes/triangle.h@{shapes/triangle.h}}
+\mbox{\hyperlink{triangle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_TRIANGLE\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_TRIANGLE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{shape_8h}{shape.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTriangle}{Triangle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classShape}{Shape}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{classTriangle_a37ddc949bb1bc7ca2e7b1fd76a3fee45}{m\_base}};}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{classTriangle_a2a114e538ed163c845efd3a80b6644d6}{m\_height}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classTriangle}{Triangle}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{name}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostream}}\ \&\mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{os}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{base}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{height}});}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classTriangle_a5199760a17454f4dc94c855a57e3a152}{\string~Triangle}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{types_8h_a98edca47320b20e1c9400ee9f0795788}{Area}}\ \mbox{\hyperlink{classTriangle_a4a872281e28138d57319f728a1a327b1}{GetArea}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classTriangle_a4009b6dd3752084fb9b7aa55571e3ed5}{ToString}}()\textcolor{keyword}{\ const\ override\ }\{\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostringstream}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}\ <<\ \textcolor{stringliteral}{"{}Triangle\ :\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ área:\ "{}}\ <<\ \mbox{\hyperlink{classTriangle_a4a872281e28138d57319f728a1a327b1}{GetArea}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}.str();\ }
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_TRIANGLE\_H\_\_}}
+
+\end{DoxyCode}

@@ -1,3 +1,14 @@
+/**
+ * @file Proyecto.cpp
+ * @brief Implementación de la simulación de radioterapia.
+ * @details Define la lógica de cálculo de dosis, generación de la malla,
+ *          construcción de la escena VTK y actualización interactiva.
+ * @author (Tu nombre o el del equipo)
+ * @date 2026
+ */
+
+
+
 #include "proyecto.h"
 
 #include <vtkSmartPointer.h>

@@ -1,0 +1,26 @@
+\doxysection{circle.\+h}
+\hypertarget{circle_8h_source}{}\label{circle_8h_source}\index{shapes/circle.h@{shapes/circle.h}}
+\mbox{\hyperlink{circle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_CIRCLE\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_CIRCLE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{shape_8h}{shape.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCircle}{Circle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classShape}{Shape}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{classCircle_aeb57f0f9d79cd4569d6a30b8ed6489aa}{m\_radius}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{classCircle}{Circle}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{name}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostream}}\ \&\mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{os}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{radius}});}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classCircle_ae3f30436e645d73e368e8ee55f8d1650}{\string~Circle}}();}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{types_8h_a98edca47320b20e1c9400ee9f0795788}{Area}}\ \mbox{\hyperlink{classCircle_a6cdd2d253fb86f41b05c0ab824d7da59}{GetArea}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classCircle_addd1ab12ba1a21e2203d3a71867e04d2}{ToString}}()\textcolor{keyword}{\ const\ override\ }\{\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostringstream}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}\ <<\ \textcolor{stringliteral}{"{}Circle\ \ \ :\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ área:\ "{}}\ <<\ \mbox{\hyperlink{classCircle_a6cdd2d253fb86f41b05c0ab824d7da59}{GetArea}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}.str();\ }
+\DoxyCodeLine{00017\ \ \ \ \ \};}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_CIRCLE\_H\_\_}}
+
+\end{DoxyCode}

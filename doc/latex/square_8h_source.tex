@@ -1,0 +1,28 @@
+\doxysection{square.\+h}
+\hypertarget{square_8h_source}{}\label{square_8h_source}\index{shapes/square.h@{shapes/square.h}}
+\mbox{\hyperlink{square_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_\_SQUARE\_H\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_\_SQUARE\_H\_\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rectangle_8h}{rectangle.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSquare}{Square}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRectangle}{Rectangle}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{classSquare_a8cc01fd63993a5a157b17e5c122c466a}{Square}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{name}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostream}}\ \&\mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{os}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{side}})\ :\ \mbox{\hyperlink{classRectangle}{Rectangle}}(\mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{name}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{os}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{side}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{side}})\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShape_a5103804eb1d23a324e01123422c63ce2}{m\_os}}\ <<\ \textcolor{stringliteral}{"{}Construyendo\ Square:\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{endl}};}
+\DoxyCodeLine{00011\ \ \ \ \ \}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classSquare_a90af7ce1060cff7b717ceddb333846b8}{\string~Square}}()\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShape_a5103804eb1d23a324e01123422c63ce2}{m\_os}}\ <<\ \textcolor{stringliteral}{"{}Destruyendo\ \ Square:\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{endl}};}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classSquare_a4648a1476d8f02be0af1c9f3b79f6be4}{ToString}}()\textcolor{keyword}{\ const\ override\ }\{\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostringstream}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}\ <<\ \textcolor{stringliteral}{"{}Square\ \ \ :\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ área:\ "{}}\ <<\ \mbox{\hyperlink{classRectangle_a818e32a76603a86a14cf99d420b569d2}{GetArea}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}.str();\ }
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_SQUARE\_H\_\_}}
+
+\end{DoxyCode}

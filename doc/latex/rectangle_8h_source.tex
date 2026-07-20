@@ -1,0 +1,27 @@
+\doxysection{rectangle.\+h}
+\hypertarget{rectangle_8h_source}{}\label{rectangle_8h_source}\index{shapes/rectangle.h@{shapes/rectangle.h}}
+\mbox{\hyperlink{rectangle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_RECTANGLE\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_RECTANGLE\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{shape_8h}{shape.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRectangle}{Rectangle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classShape}{Shape}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{classRectangle_aeb3a3ca1f0ea7d5cf700b573ea90c84b}{m\_width}};}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{classRectangle_a12ab05d78c3f8a394407c6b30b17b332}{m\_height}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classRectangle}{Rectangle}}(\textcolor{keywordtype}{string}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{name}},\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostream}}\ \&\mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{os}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{width}},\ \mbox{\hyperlink{types_8h_a225ba7cee6a707c34bcdb83ef131b03f}{Distance}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{height}});}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRectangle_a494c076b13aadf26efdce07d23c61ddd}{\string~Rectangle}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{types_8h_a98edca47320b20e1c9400ee9f0795788}{Area}}\ \mbox{\hyperlink{classRectangle_a818e32a76603a86a14cf99d420b569d2}{GetArea}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classRectangle_a9e1f305721a27097d3644cd4326ad40f}{ToString}}()\textcolor{keyword}{\ const\ override\ }\{\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{ostringstream}}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}\ <<\ \textcolor{stringliteral}{"{}Rectangle:\ "{}}\ <<\ \mbox{\hyperlink{classShape_ad87b91fb19573181d85d351aed9339c8}{GetName}}()\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ área:\ "{}}\ <<\ \mbox{\hyperlink{classRectangle_a818e32a76603a86a14cf99d420b569d2}{GetArea}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{array4_8h_ae5a76fb14db37e13c0089247354afa84}{oss}}.str();\ }
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_RECTANGLE\_H\_\_}}
+
+\end{DoxyCode}
