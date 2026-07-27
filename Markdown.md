@@ -7,8 +7,12 @@
 
 Visita la [Documentación de GitHub](https://github.com/ecuadros/2026-I-MCC004-Programacion-Avanzada)
 
-- [x] Print
-- [x] m1 = m2 * m3
-- [x] m2 = k*m1
-- [x] m2 = m2 - m3
+- [x] Matrix<int>, Matrix<float>
+- [x] m[3][2] = 8
+- [x] Regex
+- [x] Threads
+- [x] DemoCpp
+- [x] Doxygen
+- [x] VTK
+- [x] Cuda
 
